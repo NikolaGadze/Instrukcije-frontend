@@ -18,7 +18,7 @@
         <v-col cols="12">
           <h2 style="text-align:center; margin-bottom: 10px;">Osnovno o projektu</h2>
           <p>
-            Naziv projekta je Aplikacija za pretragu instrukcija, čiji je osnovni cilj studentima i učenicima omogućiti
+            Naziv projekta su Instrukcije, čiji je osnovni cilj studentima i učenicima omogućiti
              što lakše stupanje u kontakt s predavačima koji nude usluge instrukcija, te koji se također kao korisnici prijavljuju na sustav.
              Ulogu gosta u ovoj aplikaciji imaju učenici i studenti, kao i sve ostale osobe koje nisu prijavljene na sustav te oni mogu pregledavati
              sadržaje na aplikaciji, te tako doći do potebnih informacija koje im trebaju broj telefona, email, mjesto i slično.
@@ -62,13 +62,13 @@
 
 
         <v-row>
-          <v-col cols="6" style="color: white; text-align: center; font-size: x-large;">
+          <v-col cols="12" xl="6" lg="6" md="6" sm="12" xs="12" style="color: white; text-align: center; font-size: x-large;">
             <div>
               <v-icon color="white" size="30px" @click="toGithubIvan()">mdi-github</v-icon>
               <h2>
                 Ivan Raič
               </h2>
-              <p style="text-align: center">Ivan Raič, rođen 11.11.2001 godine u Mostaru,<br>
+              <p style="text-align: center; margin-bottom: 30px;">Ivan Raič, rođen 11.11.2001 godine u Mostaru,<br>
                 rodom iz Stoca, a živi u okolici Stoca.<br>
                 Završio Osnovnu školu Stolac,<br>
                 a zatim u Srednjoj Strukovnoj Školi Stolac,<br>
@@ -77,17 +77,54 @@
                 gdje je trenutno student 3.godine.
               </p>
 
+              <template>
+                <v-row justify="center">
+                  <v-dialog
+                    v-model="dialog1"
+                    width="600px"
+                  >
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-btn
+                        color="deep-purple darken-4"
+                        dark
+                        v-bind="attrs"
+                        v-on="on"
+                      >
+                        Ivan Raič
+                      </v-btn>
+                    </template>
+                    <v-card>
+                      
+                      <v-card-text>
+                        <br>
+                        <v-img :src="require('../assets/IvanRaic.jpeg')" height="630" width="550" ></v-img>
+                      </v-card-text>
+                      <v-card-actions>
+                        <v-spacer></v-spacer> 
+                        
+                        <v-btn
+                          color="red darken-1"
+                          text
+                          @click="dialog1 = false"
+                        >
+                          Zatvori
+                        </v-btn>
+                      </v-card-actions>
+                    </v-card>
+                  </v-dialog>
+                </v-row>
+              </template>
             </div>
           </v-col>
 
 
-          <v-col cols="6" style="color: white; text-align: center; font-size: x-large">
+          <v-col cols="12" xl="6" lg="6" md="6" sm="12" xs="12" style="color: white; text-align: center; font-size: x-large">
             <div>
               <v-icon color="white" size="30px" @click="toGithubNikola()">mdi-github</v-icon>
               <h2>
                 Nikola Gadže
               </h2>
-              <p style="text-align: center">Nikola Gadže, rođen 9.11.2001 godine u Splitu,<br>
+              <p style="text-align: center; margin-bottom: 30px;">Nikola Gadže, rođen 9.11.2001 godine u Splitu,<br>
                 rodom iz Ljubuškog, a živi u okolici Ljubuškog.<br>
                 Završio Osnovnu školu Tina Ujevića u Vitini,<br>
                 a zatim Gimnaziju u Ljubuškom.<br>
@@ -95,52 +132,7 @@
                 gdje je trenutno student 3.godine.
               </p>
             </div>
-          </v-col>
-        </v-row>
-
-        <v-row>
-          <v-col cols="6">
-            <template>
-              <v-row justify="center">
-                <v-dialog
-                  v-model="dialog1"
-                  width="600px"
-                >
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-btn
-                      color="deep-purple darken-4"
-                      dark
-                      v-bind="attrs"
-                      v-on="on"
-                    >
-                      Ivan Raič
-                    </v-btn>
-                  </template>
-                  <v-card>
-                    
-                    <v-card-text>
-                      <br>
-                      <v-img :src="require('../assets/IvanRaic.jpeg')" height="630" width="550" ></v-img>
-                    </v-card-text>
-                    <v-card-actions>
-                      <v-spacer></v-spacer> 
-                      
-                      <v-btn
-                        color="red darken-1"
-                        text
-                        @click="dialog1 = false"
-                      >
-                        Zatvori
-                      </v-btn>
-                    </v-card-actions>
-                  </v-card>
-                </v-dialog>
-              </v-row>
-            </template>
-          </v-col>
-
-
-          <v-col cols="6">
+            
             <template>
               <v-row justify="center">
                 <v-dialog
@@ -197,7 +189,8 @@
           <v-col v-for="tehnologija in tehnologije" :key="tehnologija" cols="12" xl="4" lg="4" md="6" sm="12" xs="12">
             <v-img
             height="350"
-            :src="tehnologija.slika">
+            :src="tehnologija.slika"
+            >
 
             </v-img>
             <p>{{ tehnologija.ime }}</p>
@@ -219,10 +212,10 @@ export default {
     {ime: 'HTML', slika: 'https://imgs.search.brave.com/tNr6FaOC1uPTCjt0rtO71COF0rJYMdum0rjC-Dt3NQc/rs:fit:600:350:1/g:ce/aHR0cHM6Ly93d3cu/ZnJlZXBuZ2xvZ29z/LmNvbS91cGxvYWRz/L2h0bWw1LWxvZ28t/cG5nL2h0bWw1LWxv/Z28taW1hZ2UtbG9n/by1odG1sLTcucG5n'},
     {ime: 'CSS', slika: 'https://imgs.search.brave.com/MgT3JX9doCmi_iWfKy11g9HbzQDdI_ml3g4F_NeSB5A/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly8xMDAw/bG9nb3MubmV0L3dw/LWNvbnRlbnQvdXBs/b2Fkcy8yMDIwLzA5/L0NTUy1Mb2dvLnBu/Zw'},
     {ime: 'Bootstrap', slika: 'https://imgs.search.brave.com/Ytvcr5-8bzOPaIvNKP4aa6B5bfoUAi1IZUKoekDTgQI/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly9kb3du/bG9hZC5sb2dvLndp/bmUvbG9nby9Cb290/c3RyYXBfKGZyb250/LWVuZF9mcmFtZXdv/cmspL0Jvb3RzdHJh/cF8oZnJvbnQtZW5k/X2ZyYW1ld29yaykt/TG9nby53aW5lLnBu/Zw'},
-    {ime: 'JavaScript', slika: 'https://imgs.search.brave.com/zRXPpOhRJEdccUWHHnguELZyqzCuqWQmAjKXmRiv5do/rs:fit:512:512:1/g:ce/aHR0cHM6Ly9sb2dv/ZGl4LmNvbS9sb2dv/LzM3NDk3Mi5wbmc'},
+    {ime: 'JavaScript', slika: 'https://imgs.search.brave.com/bS4S_lf44stv2WqIKcYigvkNUSWTFqQziR1wIjmtc_4/rs:fit:500:313:1/g:ce/aHR0cHM6Ly8xMDAw/bG9nb3MubmV0L3dw/LWNvbnRlbnQvdXBs/b2Fkcy8yMDIwLzA5/L0phdmFTY3JpcHQt/TG9nby01MDB4MzEz/LnBuZw'},
     {ime: 'VueJS', slika: 'https://imgs.search.brave.com/VnUn-w-q5O0xeIwrPTs_eDI21iDgK71SJoVtjDa7f3Q/rs:fit:924:636:1/g:ce/aHR0cHM6Ly9kd2ds/b2dvLmNvbS93cC1j/b250ZW50L3VwbG9h/ZHMvMjAxNy8wOS9W/dWVfanNfbG9nby5w/bmc'},
     {ime: 'Vuetify', slika: 'https://imgs.search.brave.com/TKjF7IQj8HpPKvXIbpPUgghJbMYUkN2ExDW-mJ4qH8Q/rs:fit:600:600:1/g:ce/aHR0cHM6Ly9pY29u/YXBlLmNvbS93cC1j/b250ZW50L2ZpbGVz/L25vLzExMzEwMS9w/bmcvdnVldGlmeS5w/bmc'},
-    {ime: 'PHP', slika: 'https://imgs.search.brave.com/pB93qbxyeUYui4r3eL_tz-qQiLSM6kdrzdbRPglIJ7Q/rs:fit:1200:1060:1/g:ce/aHR0cHM6Ly9kYWIx/bm1zbHZ2bnRwLmNs/b3VkZnJvbnQubmV0/L3dwLWNvbnRlbnQv/dXBsb2Fkcy8yMDE2/LzA0LzE0NTk4NzAz/MTNQSFAtbG9nby5z/dmcucG5n'},
+    {ime: 'PHP', slika: 'https://imgs.search.brave.com/HaR8ieAjljBMuO8ZRfyr49U2_H-lA_uSWXa8jdqvXMU/rs:fit:1200:1200:1/g:ce/aHR0cDovL3BuZ2lt/Zy5jb20vdXBsb2Fk/cy9waHAvcGhwX1BO/RzE4LnBuZw'},
     {ime: 'Laravel', slika: 'https://imgs.search.brave.com/YqHCjQS952JzncK5-HTyS5g4IcCf-JV-Yi9Pa2TS7S8/rs:fit:1024:1024:1/g:ce/aHR0cHM6Ly9sb2dv/c3BuZy5vcmcvZG93/bmxvYWQvbGFyYXZl/bC9sb2dvLWxhcmF2/ZWwtMTAyNC5wbmc'},
     {ime: 'SQL', slika: 'https://imgs.search.brave.com/lIh89F0-ubarUMqSFWwTLETeYIb3rCK4GwTaPugWfWI/rs:fit:600:315:1/g:ce/aHR0cHM6Ly9henVy/ZS5taWNyb3NvZnQu/Y29tL3N2Z2hhbmRs/ZXIvc3FsLXNlcnZl/ci1zdHJldGNoLWRh/dGFiYXNlP3dpZHRo/PTYwMCZoZWlnaHQ9/MzE1'}
   ]

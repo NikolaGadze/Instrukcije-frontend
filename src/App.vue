@@ -4,7 +4,7 @@
     <v-app-bar app class="blue-grey darken-4">
       <v-app-bar-nav-icon style="color: white" @click="drawer = !drawer"></v-app-bar-nav-icon>
 
-      <v-toolbar-title style="color: white">Aplikacija za pretragu instrukcija</v-toolbar-title>
+      <v-toolbar-title style="color: white">Instrukcije</v-toolbar-title>
     </v-app-bar>
 
     <v-navigation-drawer
@@ -22,7 +22,7 @@
           color="light-blue"       
         >
           <v-list-item-content>
-            <v-list-item-title style="color: white;">{{ link.ime }}</v-list-item-title>
+            <v-list-item-title style="color: white; font-size: larger;"><v-icon style="margin-right: 10px;">{{ link.ikona }}</v-icon> {{ link.ime }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -67,7 +67,7 @@
       cards: ['Today', 'Yesterday'],
       drawer: null,
       links: [
-        {ime: 'Pocetna', ruta: '/'},
+        {ime: 'Početna', ruta: '/', ikona: 'mdi-home'},
       ],
     }),
   }
