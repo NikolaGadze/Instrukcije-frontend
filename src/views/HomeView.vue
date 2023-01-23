@@ -14,6 +14,18 @@
           </v-col>
         </v-row>
 
+        <v-row style="text-align: center">
+          <v-col cols="12">
+            <a href="https://dbdiagram.io/d/63cdc706296d97641d7b550a" target="_blank" style="color: dodgerblue; text-decoration: none; font-size: x-large;">Model baze podataka</a>
+          </v-col>
+        </v-row>
+
+        <v-row>
+          <v-col cols="12">
+            <v-divider color="purple"></v-divider>
+          </v-col>
+        </v-row>
+
       <v-row style="color:white; font-size: x-large"> 
         <v-col cols="12">
           <h2 style="text-align:center; margin-bottom: 10px;">Osnovno o projektu</h2>
@@ -187,15 +199,30 @@
 
         <v-row style="text-align:center; color:aliceblue">
           <v-col v-for="tehnologija in tehnologije" :key="tehnologija" cols="12" xl="4" lg="4" md="6" sm="12" xs="12">
-            <v-img
-            height="350"
-            :src="tehnologija.slika"
-            >
+            <template>
+              <v-card
+                class="mx-auto my-12 blue-grey darken-4"
+                max-width="374"
+              >
+                <template slot="progress">
+                  <v-progress-linear
+                    color="deep-purple"
+                    height="10"
+                    indeterminate
+                  ></v-progress-linear>
+                </template>
 
-            </v-img>
-            <p>{{ tehnologija.ime }}</p>
+                <v-img
+                  height="350"
+                  :src="tehnologija.slika"
+                ></v-img>
+
+                <v-card-title class="justify-center" style="color: white">{{ tehnologija.ime }}</v-card-title>
+              </v-card>
+            </template>
           </v-col>
         </v-row>
+
       </v-container>
   </div>
 </template>
