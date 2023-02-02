@@ -1,18 +1,20 @@
 <template>
   <div class="home">
+   
+    
     <v-container fluid>
 
       <v-row style="text-align: center">
-          <v-col cols="12">
-            <a href="./Projekt.pdf" target="_blank" style="color: dodgerblue; text-decoration: none; font-size: x-large;">Vizija</a>
-          </v-col>
-        </v-row>
-
-        <v-row>
-          <v-col cols="12">
-            <v-divider color="purple"></v-divider>
-          </v-col>
-        </v-row>
+        <v-col cols="12">
+          <a href="./Projekt.pdf" target="_blank" style="color: dodgerblue; text-decoration: none; font-size: x-large;">Vizija</a>
+        </v-col>
+      </v-row>
+      
+      <v-row>
+        <v-col cols="12">
+          <v-divider color="purple"></v-divider>
+        </v-col>
+      </v-row>
 
         <v-row style="text-align: center">
           <v-col cols="12">
@@ -41,7 +43,7 @@
         </v-col>
       </v-row>
 
-
+     
       <v-row>
           <v-col cols="12">
             <v-divider color="purple"></v-divider>
@@ -63,133 +65,7 @@
           <v-col cols="12">
             <v-divider color="purple"></v-divider>
           </v-col>
-        </v-row>
-
-
-        <v-row style="text-align: center">
-          <v-col cols="12">
-            <h2 style="color: white; font-size: 30px">Informacije o autorima projekta</h2>
-          </v-col>
-        </v-row>
-
-
-        <v-row>
-          <v-col cols="12" xl="6" lg="6" md="6" sm="12" xs="12" style="color: white; text-align: center; font-size: x-large;">
-            <div>
-              <v-icon color="white" size="30px" @click="toGithubIvan()">mdi-github</v-icon>
-              <h2>
-                Ivan Raič
-              </h2>
-              <p style="text-align: center; margin-bottom: 30px;">Ivan Raič, rođen 11.11.2001 godine u Mostaru,<br>
-                rodom iz Stoca, a živi u okolici Stoca.<br>
-                Završio Osnovnu školu Stolac,<br>
-                a zatim u Srednjoj Strukovnoj Školi Stolac,<br>
-                završio smjer Računalni tehničar za strojarstvo<br>
-                Nakon toga upisuje Informatiku na FPMOZ-u<br>
-                gdje je trenutno student 3.godine.
-              </p>
-
-              <template>
-                <v-row justify="center">
-                  <v-dialog
-                    v-model="dialog1"
-                    width="600px"
-                  >
-                    <template v-slot:activator="{ on, attrs }">
-                      <v-btn
-                        color="deep-purple darken-4"
-                        dark
-                        v-bind="attrs"
-                        v-on="on"
-                      >
-                        Ivan Raič
-                      </v-btn>
-                    </template>
-                    <v-card>
-                      
-                      <v-card-text>
-                        <br>
-                        <v-img :src="require('../assets/IvanRaic.jpeg')" height="630" width="550" ></v-img>
-                      </v-card-text>
-                      <v-card-actions>
-                        <v-spacer></v-spacer> 
-                        
-                        <v-btn
-                          color="red darken-1"
-                          text
-                          @click="dialog1 = false"
-                        >
-                          Zatvori
-                        </v-btn>
-                      </v-card-actions>
-                    </v-card>
-                  </v-dialog>
-                </v-row>
-              </template>
-            </div>
-          </v-col>
-
-
-          <v-col cols="12" xl="6" lg="6" md="6" sm="12" xs="12" style="color: white; text-align: center; font-size: x-large">
-            <div>
-              <v-icon color="white" size="30px" @click="toGithubNikola()">mdi-github</v-icon>
-              <h2>
-                Nikola Gadže
-              </h2>
-              <p style="text-align: center; margin-bottom: 30px;">Nikola Gadže, rođen 9.11.2001 godine u Splitu,<br>
-                rodom iz Ljubuškog, a živi u okolici Ljubuškog.<br>
-                Završio Osnovnu školu Tina Ujevića u Vitini,<br>
-                a zatim Gimnaziju u Ljubuškom.<br>
-                Nakon toga upisuje Informatiku na FPMOZ-u<br>
-                gdje je trenutno student 3.godine.
-              </p>
-            </div>
-            
-            <template>
-              <v-row justify="center">
-                <v-dialog
-                  v-model="dialog2"
-                  width="600px"
-                >
-                  <template v-slot:activator="{ on, attrs }">
-                    <v-btn
-                      color="deep-purple darken-4"
-                      dark
-                      v-bind="attrs"
-                      v-on="on"
-                    >
-                      Nikola Gadže
-                    </v-btn>
-                  </template>
-                  <v-card>
-                    
-                    <v-card-text>
-                      <br>
-                      <v-img :src="require('../assets/NikolaGadze.jpeg')" height="630" width="550" ></v-img>
-                    </v-card-text>
-                    <v-card-actions>
-                      <v-spacer></v-spacer> 
-                      
-                      <v-btn
-                        color="red darken-1"
-                        text
-                        @click="dialog2 = false"
-                      >
-                        Zatvori
-                      </v-btn>
-                    </v-card-actions>
-                  </v-card>
-                </v-dialog>
-              </v-row>
-            </template>
-          </v-col>
-        </v-row>
-
-        <v-row>
-          <v-col cols="12">
-            <v-divider color="purple"></v-divider>
-          </v-col>
-        </v-row>
+      </v-row>
 
         <v-row style="text-align: center">
           <v-col cols="12">
@@ -224,7 +100,9 @@
         </v-row>
 
       </v-container>
+    
   </div>
+
 </template>
 
 <script>
@@ -233,8 +111,7 @@
 export default {
   name: 'HomeView',
   data: () => ({
-    dialog1: false,
-    dialog2: false,
+    
   tehnologije : [
     {ime: 'HTML', slika: 'https://imgs.search.brave.com/tNr6FaOC1uPTCjt0rtO71COF0rJYMdum0rjC-Dt3NQc/rs:fit:600:350:1/g:ce/aHR0cHM6Ly93d3cu/ZnJlZXBuZ2xvZ29z/LmNvbS91cGxvYWRz/L2h0bWw1LWxvZ28t/cG5nL2h0bWw1LWxv/Z28taW1hZ2UtbG9n/by1odG1sLTcucG5n'},
     {ime: 'CSS', slika: 'https://imgs.search.brave.com/MgT3JX9doCmi_iWfKy11g9HbzQDdI_ml3g4F_NeSB5A/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly8xMDAw/bG9nb3MubmV0L3dw/LWNvbnRlbnQvdXBs/b2Fkcy8yMDIwLzA5/L0NTUy1Mb2dvLnBu/Zw'},
@@ -246,16 +123,7 @@ export default {
     {ime: 'Laravel', slika: 'https://imgs.search.brave.com/YqHCjQS952JzncK5-HTyS5g4IcCf-JV-Yi9Pa2TS7S8/rs:fit:1024:1024:1/g:ce/aHR0cHM6Ly9sb2dv/c3BuZy5vcmcvZG93/bmxvYWQvbGFyYXZl/bC9sb2dvLWxhcmF2/ZWwtMTAyNC5wbmc'},
     {ime: 'SQL', slika: 'https://imgs.search.brave.com/lIh89F0-ubarUMqSFWwTLETeYIb3rCK4GwTaPugWfWI/rs:fit:600:315:1/g:ce/aHR0cHM6Ly9henVy/ZS5taWNyb3NvZnQu/Y29tL3N2Z2hhbmRs/ZXIvc3FsLXNlcnZl/ci1zdHJldGNoLWRh/dGFiYXNlP3dpZHRo/PTYwMCZoZWlnaHQ9/MzE1'}
   ]
-  }),
-
-  methods: {
-    toGithubNikola: function(){
-        window.open('https://github.com/NikolaGadze')
-      },
-      toGithubIvan: function(){
-        window.open('https://github.com/raici')
-      },
-  }
+  })
   
 }
 </script>

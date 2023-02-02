@@ -5,8 +5,10 @@
       <v-app-bar-nav-icon style="color: white" @click="drawer = !drawer"></v-app-bar-nav-icon>
 
       <v-toolbar-title style="color: white">Instrukcije</v-toolbar-title>
-    </v-app-bar>
 
+      
+    </v-app-bar>
+    
     <v-navigation-drawer
       color="blue-grey darken-4"
       v-model="drawer"
@@ -68,6 +70,9 @@
       drawer: null,
       links: [
         {ime: 'Početna', ruta: '/', ikona: 'mdi-home'},
+        {ime: 'O nama', ruta: '/about', ikona: 'mdi-home'},
+        {ime: 'Prijava', ruta: '/login', ikona: 'mdi-login'},
+        
       ],
     }),
   }
