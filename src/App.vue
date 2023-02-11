@@ -101,9 +101,7 @@
       backHome(){
         window.open("/", "_self")
       },
-      loadToSignup_predavac(){
-        window.open("/SignUp_predavac", "_self")
-      },
+      
       
       
     }
