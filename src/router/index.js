@@ -26,10 +26,21 @@ const routes = [
     path: '/login',
     name: 'login',
     component: () => import('../views/LoginView.vue')
+  },
+  {
+    path: '/signup',
+    name: 'signup',
+    component: () => import('../views/Sign_upView.vue')
+  },
+  {
+    path: '/signup_predavac',
+    name: 'signup_predavac',
+    component: () => import('../views/SignUp_predavac.vue')
   }
-   
   
 ]
+  
+
 
 const router = new VueRouter({
   mode: 'history',

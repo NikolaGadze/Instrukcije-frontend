@@ -81,11 +81,6 @@
       v => !!v || 'E-mail is required',
       v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
     ],
-
-    
-
-    //dialog1: false,
-    //dialog2: false,
   
   }),
 
@@ -102,27 +97,22 @@
 
       }
 
-      //this.$refs.form.validate()
-      //console.log(this.email)
+      
     }
-    //toGithubNikola: function(){
-        //window.open('https://github.com/NikolaGadze')
-      //},
-      //toGithubIvan: function(){
-        //window.open('https://github.com/raici')
-      //},
+    
   }
   
 }
 </script>
-<!--style>
+<!--<style>
   .background{
-    background-image: url(./assets/slika_aplikacije.png) !important;
-    height: 300px;
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoOMNNMWt6ZrmsmMNJ5VgAFY4mJXh3M5brdg&usqp=CAU) !important;
+    height: 350px;
     width: 100%;
     display: block;
     position: absolute;
     top:0;
     background-size: cover;
+    
   }
 </style>-->

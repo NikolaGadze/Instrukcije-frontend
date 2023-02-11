@@ -4,10 +4,19 @@
     <v-app-bar app class="blue-grey darken-4">
       <v-app-bar-nav-icon style="color: white" @click="drawer = !drawer"></v-app-bar-nav-icon>
 
-      <v-toolbar-title style="color: white">Instrukcije</v-toolbar-title>
+      <v-toolbar-title style="color: white;">Instrukcije</v-toolbar-title>
 
+      <img src="./assets/sum_logo.png" width="120px" @click="backHome()">
+
+      <v-divider></v-divider>
       
+      <button type="button" @click="leadToLogin()" class="btn btn-primary" style="margin-right: 20px; border-radius: 8px;" > Login </button> 
+      <button type="button" @click="leadToSignin()" class="btn btn-primary" style="margin-right: 10px; border-radius: 8px;"> Sign Up </button> 
     </v-app-bar>
+    
+    
+    
+    
     
     <v-navigation-drawer
       color="blue-grey darken-4"
@@ -52,10 +61,11 @@
           no-gutters
         >
           <v-col
-            class="deep-purple darken-4 py-4 text-center white--text"
+            class="blue darken-4 py-4 text-center white--text"
             cols="12"
           >
             {{ new Date().getFullYear() }} — <strong>Ivan Raič i Nikola Gadže</strong>
+            
           </v-col>
         </v-row>
       </v-footer>
@@ -68,12 +78,39 @@
     data: () => ({
       cards: ['Today', 'Yesterday'],
       drawer: null,
+
+
       links: [
         {ime: 'Početna', ruta: '/', ikona: 'mdi-home'},
         {ime: 'O nama', ruta: '/about', ikona: 'mdi-home'},
         {ime: 'Prijava', ruta: '/login', ikona: 'mdi-login'},
-        
-      ],
+        {ime: 'Registracija', ruta: '/signup', ikona: 'mdi-login'},
+    ]
+
+
+
     }),
+
+    methods:{
+      leadToLogin() {
+        window.open("/login","_self")
+      },
+      leadToSignin(){
+        window.open("/signup", "_self")
+      },
+      backHome(){
+        window.open("/", "_self")
+      },
+      loadToSignup_predavac(){
+        window.open("/SignUp_predavac", "_self")
+      },
+      
+      
+    }
   }
 </script>
+<style scoped>
+  
+
+  
+</style>
