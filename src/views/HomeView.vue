@@ -1,40 +1,67 @@
 <template>
   <v-card
-    class="mx-auto"
-    max-width="344"
-    outlined
-    
+    :loading="loading"
+    class="mx-auto my-12"
+    max-width="374"
   >
-    <v-list-item three-line>
-      <v-list-item-content>
-        
-        <v-list-item-title class="text-h6 mb-1">
-          Prijavi se kao predavac
-        </v-list-item-title>
-        <v-list-item-subtitle>Želiš prenijeti svoje znanje na druge?
-          Ovo je pravo mjesto za tebe!
-        </v-list-item-subtitle>
-      </v-list-item-content>
+    <template v-slot:loader="{ isActive }">
+      <v-progress-linear
+        :active="isActive"
+        color="deep-purple"
+        height="4"
+        indeterminate
+      ></v-progress-linear>
+    </template>
 
-      <v-list-item-avatar
-        tile
-        size="80"
-        color="grey"
-      ></v-list-item-avatar>
-    </v-list-item>
+    <v-img cover height="250" src="../assets/predavac.jpg" >
 
-    <v-card-actions>
-      <v-btn
-        outlined
-        rounded
-        text
-        type="button" @click="loadToSignup_predavac()"
-        
-      >
-        Sign Up
-      </v-btn>
-    </v-card-actions>
+    </v-img>
+
+    <v-card-item>
+      
+
+      <v-card-subtitle class="font-weight-bold" style="text-align: center;">
+        Želiš prenijeti znanje na druge?<br>
+        Prijavi se kao predavač
+      </v-card-subtitle>
+    </v-card-item>
+
+    
+
+    <v-divider class="mx-4 mb-1"></v-divider>
+
+    <v-btn @click="loadToSignup_predavac()" color="deep-purple-lighten-2" variant="text" style="margin-bottom: 10px;"> Registiraj se</v-btn>
+
+  <!--Student-->
+  
+      <v-progress-linear
+        :active="student"
+        color="deep-purple"
+        height="4"
+        indeterminate
+      ></v-progress-linear>
+    
+
+    <v-img cover height="250" src="../assets/student_za_karticu.jpg" >
+
+    </v-img>
+
+    <v-card-item>
+      
+
+      <v-card-subtitle class="font-weight-bold" style="text-align: center;">
+        Želite naučiti više?<br>
+        Na pravom ste mjestu!<br>
+      </v-card-subtitle>
+    </v-card-item>
+
+    
+
+    <v-divider class="mx-4 mb-1"></v-divider>
+
+    <v-btn @click="loadToSignup_student()" color="deep-purple-lighten-2" variant="text" style="margin-bottom: 10px;"> Registiraj se</v-btn>
   </v-card>
+
 </template>
 
 <script>
@@ -46,6 +73,10 @@ export default {
     loadToSignup_predavac(){
       window.open("/SignUp_predavac", "_self")
     },
+    loadToSignup_student(){
+      window.open("/SignUp_student", "_self")
+    },
+
   }
 }
 

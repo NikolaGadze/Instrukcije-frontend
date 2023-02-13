@@ -36,6 +36,11 @@ const routes = [
     path: '/signup_predavac',
     name: 'signup_predavac',
     component: () => import('../views/SignUp_predavac.vue')
+  },
+  {
+    path: '/signup_student',
+    name: 'signup_student',
+    component: () => import('../views/SignUp_student.vue')
   }
   
 ]

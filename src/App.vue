@@ -71,6 +71,8 @@
       </v-footer>
 
   </v-app>
+
+  
 </template>
 
 <script>
@@ -82,9 +84,10 @@
 
       links: [
         {ime: 'Početna', ruta: '/', ikona: 'mdi-home'},
-        {ime: 'O nama', ruta: '/about', ikona: 'mdi-home'},
+        {ime: 'O nama', ruta: '/about', ikona: 'mdi-account-group'},
+        {ime: 'Registracija', ruta: '/signup', ikona: 'mdi-account-tag'},
         {ime: 'Prijava', ruta: '/login', ikona: 'mdi-login'},
-        {ime: 'Registracija', ruta: '/signup', ikona: 'mdi-login'},
+        
     ]
 
 

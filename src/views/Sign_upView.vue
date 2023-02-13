@@ -68,12 +68,30 @@
                 
 
 
-
                 </v-card-text>
+
+                <!--Checkboxs-->
+                <v-container fluid>
+                  <v-radio-group v-model="radios">
+                   
+                    <div>Želim biti</div>
+                    
+                  <v-radio value=" Predavač">
+                    <template v-slot:label>
+                      <div>Predavač</div>
+                    </template>
+                  </v-radio>
+                  <v-radio value="Student" >
+                    <template v-slot:label>
+                      <div>Student</div>
+                    </template>
+                  </v-radio>
+                  </v-radio-group>
+                </v-container>
 
                 <v-card-text>
                     <v-subheader class="pa-0">
-                        Odaberite drzavu
+                        Odaberite državu
                     </v-subheader>
                     <v-autocomplete
                         v-model="model"
@@ -108,6 +126,8 @@
                   <span class="white--text px-8"> Sign In </span> 
                 </v-btn>
               </v-card-actions>
+
+              
   
             </v-form>
   
@@ -122,8 +142,10 @@
   
   </template>
   
-  <script>
-    export default {
+<script>
+
+
+  export default {
     name: 'LoginView',
     data: () => ({
   
@@ -157,14 +179,10 @@
           'Hrvatska', 'Bosna i Hercegovina', 'Srbija',
         ],
       }
+      
 
     }),
 
-   
-      
-  
-  
-  
     methods: {
   
       submitHandler(){
@@ -185,17 +203,5 @@
     }
     
   }
-  </script>
-  <!--<style>
-    .background{
-      background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoOMNNMWt6ZrmsmMNJ5VgAFY4mJXh3M5brdg&usqp=CAU) !important;
-      height: 350px;
-      width: 100%;
-      display: block;
-      position: absolute;
-      top:0;
-      background-size: cover;
-      
-    }
-  </style>-->
+</script>
   

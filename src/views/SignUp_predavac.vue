@@ -2,28 +2,27 @@
   
 
 
-    <fragment> 
-      <div class="background"></div>
-      <v-main class="d-flex justify-center align-center">
-        <v-col cols="10" lg="4" class="mx-auto">
+  <fragment> 
+    <div class="background"></div>
+    <v-main class="d-flex justify-center align-center">
+      <v-col cols="10" lg="4" class="mx-auto">
   
-          <v-card class="pa-4">
+        <v-card class="pa-4">
   
-            <div class="text-center">
+          <div class="text-center">
               
-              <v-avatar size="100" color="indigo lighten-4">
+            <v-avatar size="100" color="indigo lighten-4">
   
-                <v-icon size="40" color="indigo"> mdi-account </v-icon>
-              </v-avatar>
+              <v-icon size="40" color="indigo"> mdi-account </v-icon>
+            </v-avatar>
   
-              <h2 class="indigo--text"> Sign Up </h2>
-            </div>
+            <h2 class="indigo--text"> Sign Up </h2>
+          </div>
   
-            <v-form @submit.prevent="submitHandler" ref="form">
-                <v-card-text>
+          <v-form @submit.prevent="submitHandler" ref="form">
+              <v-card-text>
                 <v-text-field
                   v-model="ime"
-                  
                   type="name"
                   label="Korisnicko ime"
                   placeholder="Korisnicko ime"
@@ -65,16 +64,43 @@
                   @click:append="password_Show = !password_Show"
                 />
 
+              </v-card-text>
+
+          <!--ODABERI DRZAVU-->
+          <v-container fluid>
+            <v-row>
+             <v-col cols="12">
+                <v-autocomplete
+                  v-model="values"
+                  :odaberi_drzavu="odaberi_drzavu"
+                  density="drzava"
+                  label="Odaberi Državu"
+                ></v-autocomplete>
+              </v-col>
+            </v-row>
+          </v-container>
+
+
+          <!--UNESI PREDMET-->
+
+          <v-text-field
+            label="Predmet koji želite podučavati"
+            :rules="rules"
+            hide-details="auto"
+            
+          ></v-text-field><br>
+
+          <!--Slika-->
+          <v-file-input
+            label="File input"
+            variant="filled"
+            prepend-icon="mdi-camera"
+          ></v-file-input>
+          
                 
 
 
-
-                </v-card-text>
-
-                
-
-
-                <v-switch label="Remeber me" color="indigo"></v-switch>
+              <v-switch label="Remeber me" color="indigo"></v-switch>
       
   
               <v-card-actions class="justify-center">
@@ -124,14 +150,10 @@
         v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
       ],
 
-      return:{
-        isEditing: false,
-        model: null,
-        states:[
-          'Hrvatska', 'Bosna i Hercegovina', 'Srbija',
-        ],
-      }
+      
 
+      odaberi_drzavu: ['Hrvatska', 'Srbija' , 'Bosna i Hercegovina'],
+      
     }),
 
    
