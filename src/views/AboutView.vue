@@ -104,12 +104,12 @@
           </v-col>
         </v-row>
 
-    <v-row justify="center" >
+    <v-row justify="center">
       <v-expansion-panels accordion>
         <v-expansion-panel
-          v-for="vision in visions" :key="vision" cols="12" xl="4" lg="4" md="6" sm="12" xs="12">
+          v-for="vision in visions" :key="vision" cols="12" xl="12" lg="12" md="12" sm="12" xs="12">
        
-          <v-expansion-panel-header style="text-decoration: solid;">{{vision.ime}}</v-expansion-panel-header>
+          <v-expansion-panel-header style="text-decoration: solid; text-align: center;">{{vision.ime}}</v-expansion-panel-header>
           <v-expansion-panel-content>
               {{ vision.opis }}
           </v-expansion-panel-content>
@@ -128,7 +128,8 @@
       <v-row style="text-align:center; color:aliceblue">
         <v-col v-for="tehnologija in tehnologije" :key="tehnologija" cols="12" xl="4" lg="4" md="6" sm="12" xs="12">
           <template>
-            <v-card class="mx-auto my-12 blue-grey darken-4" max-width="374">
+            <v-hover v-slot="{ hover }" open-delay="200">
+              <v-card :elevation="hover ? 16 : 2" :class="{ 'on-hover': hover }" class="mx-auto my-12 blue-grey darken-4" max-width="374">
               <template slot="progress">
                 <v-progress-linear color="deep-purple" height="10" indeterminate></v-progress-linear>
               </template>
@@ -136,7 +137,8 @@
               <v-img height="350" :src="tehnologija.slika"></v-img>
 
               <v-card-title class="justify-center" style="color: white">{{ tehnologija.ime }}</v-card-title>
-            </v-card>
+              </v-card>
+            </v-hover>
           </template>
         </v-col>
       </v-row>

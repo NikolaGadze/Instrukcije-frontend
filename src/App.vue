@@ -4,14 +4,20 @@
     <v-app-bar app class="blue-grey darken-4">
       <v-app-bar-nav-icon style="color: white" @click="drawer = !drawer"></v-app-bar-nav-icon>
 
-      <v-toolbar-title style="color: white;">Instrukcije</v-toolbar-title>
+
+      <v-toolbar-title style="color: white; margin-right: 10px;">Instrukcije</v-toolbar-title>
 
       <img src="./assets/sum_logo.png" width="120px" @click="backHome()">
 
-      <v-divider></v-divider>
+      <v-spacer></v-spacer>
+
+      <v-toolbar-title style="color: white; margin-right: 10px; border-radius: 8px;">Prijavite se na sustav!</v-toolbar-title>
       
-      <button type="button" @click="leadToLogin()" class="btn btn-primary" style="margin-right: 20px; border-radius: 8px;" > Login </button> 
-      <button type="button" @click="leadToSignin()" class="btn btn-primary" style="margin-right: 10px; border-radius: 8px;"> Sign Up </button> 
+
+      
+      
+      <button type="button" @click="leadToLogin()" class="btn btn-primary" style="margin-right: 10px; border-radius: 8px;" > Prijava </button> 
+      <button type="button" @click="leadToSignin()" class="btn btn-primary" style="margin-right: 10px; border-radius: 8px;"> Registracija </button> 
     </v-app-bar>
     
     
@@ -61,7 +67,7 @@
           no-gutters
         >
           <v-col
-            class="blue darken-4 py-4 text-center white--text"
+            class="blue darken-3 py-4 text-center white--text"
             cols="12"
           >
             {{ new Date().getFullYear() }} — <strong>Ivan Raič i Nikola Gadže</strong>
@@ -84,10 +90,11 @@
 
       links: [
         {ime: 'Početna', ruta: '/', ikona: 'mdi-home'},
-        {ime: 'O nama', ruta: '/about', ikona: 'mdi-account-group'},
+        {ime: 'O nama', ruta: '/about', ikona: 'mdi-help-box'},
         {ime: 'Registracija', ruta: '/signup', ikona: 'mdi-account-tag'},
         {ime: 'Prijava', ruta: '/login', ikona: 'mdi-login'},
-        
+        {ime: 'Pretražite instrukcije', ruta: '/searchInstructors', ikona: 'mdi-magnify'},
+        {ime: 'Pretražite korisnike', ruta: '/searchUsers', ikona: 'mdi-account-group'}
     ]
 
 

@@ -9,12 +9,12 @@
 
           <div class="text-center">
             
-            <v-avatar size="100" color="indigo lighten-4">
+            <v-avatar size="100" color="primary lighten-5">
 
-              <v-icon size="40" color="indigo"> mdi-account </v-icon>
+              <v-icon size="40" color="primary"> mdi-account </v-icon>
             </v-avatar>
 
-            <h2 class="indigo--text"> Login Page</h2>
+            <h2 class="primary--text">Prijava</h2>
           </div>
 
           <v-form @submit.prevent="submitHandler" ref="form">
@@ -23,35 +23,36 @@
                 v-model="email"
                 :rules="emailRules"
                 type="email"
-                label="Email"
+                label="Unesite vašu email adresu"
                 placeholder="Email"
-                prepend-inner-icon="mdi-account"
+                prepend-inner-icon="mdi-email"
               />
-            </v-card-text>
-            
-            <v-card-text>
+
               <v-text-field
                 v-model="password"
                 :rules="passwordRules"
                 :type="passwordShow? 'text' : 'password'"
-                label="Password"
-                placeholder="Password"
+                label="Unesite vašu lozniku"
+                placeholder="Lozinka"
                 prepend-inner-icon="mdi-key"
                 :append-icon="passwordShow ? 'mdi-eye' : 'mdi-eye-off'"
                 @click:append="passwordShow = !passwordShow"
               />
-              <v-switch label="Remeber me" color="indigo"></v-switch>
+
+              <p style="font-size: medium;">Nemate račun?<a href="/singup" style="text-decoration: none;"> Registrirajte se!</a></p>
+              <v-switch label="Zapamti me" color="primary"></v-switch>
             </v-card-text>
 
             <v-card-actions class="justify-center">
-              <v-btn :loading="loading" type="submit" color="indigo"> 
-                <span class="white--text px-8"> Login </span> 
+              <v-btn :loading="loading" type="submit" color="primary"> 
+                <span class="white--text px-8"> Prijavite se </span> 
               </v-btn>
             </v-card-actions>
 
           </v-form>
 
         </v-card>
+
       </v-col>
     </v-main>
     <v-snackbar color="green" v-model="snackbar">
@@ -73,13 +74,13 @@
     passwordShow: false,
     password: '',
     passwordRules: [
-      v => !!v || 'Password is required',
-      v => (v && v.length >= 6) || 'Password must be 6 characters or more!',
+      v => !!v || 'Lozinku je potrebno unijeti!',
+      v => (v && v.length >= 6) || 'Lozinka mora imati 6 ili više znakova!',
     ],
     email: '',
     emailRules: [
-      v => !!v || 'E-mail is required',
-      v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+      v => !!v || 'Email adresu je pootrebno unijeti!',
+      v => /.+@.+\..+/.test(v) || 'Neispravan format email-a!',
     ],
   
   }),

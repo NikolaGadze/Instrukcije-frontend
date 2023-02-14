@@ -30,18 +30,28 @@ const routes = [
   {
     path: '/signup',
     name: 'signup',
-    component: () => import('../views/Sign_upView.vue')
+    component: () => import('../views/RegistrationView.vue')
   },
   {
     path: '/signup_predavac',
     name: 'signup_predavac',
-    component: () => import('../views/SignUp_predavac.vue')
+    component: () => import('../views/InstructorRegisterView.vue')
   },
   {
     path: '/signup_student',
     name: 'signup_student',
-    component: () => import('../views/SignUp_student.vue')
-  }
+    component: () => import('../views/UserRegisterView.vue')
+  },
+  {
+    path: '/searchInstructors',
+    name: 'searchInstructors',
+    component: () => import('../views/SearchInstructorsView.vue')
+  },
+  {
+    path: '/searchUsers',
+    name: 'searchUsers',
+    component: () => import('../views/SearchUsersView.vue')
+  },
   
 ]
   
