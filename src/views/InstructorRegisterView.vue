@@ -131,21 +131,21 @@ export default {
     passwordShow: false,
     password: '',
     passwordRules: [
-      v => !!v || 'Password is required',
-      v => (v && v.length >= 6) || 'Password must be 6 characters or more!',
+      v => !!v || 'Lozinku je potrebno unijeti',
+      v => (v && v.length >= 6) || 'Lozinka mora imati 6 ili više znakova!',
     ],
 
     password_Show: false,
     conf_password: '',
     password_Rules: [
-      v => !!v || 'Password is required',
-      v => (v && v.length >= 6) || 'Password must be 6 characters or more!',
+      v => !!v || 'Lozinku je potrebno unijeti',
+      v => (v && v.length >= 6) || 'Lozinka mora imati 6 ili više znakova!',
     ],
 
     email: '',
     emailRules: [
-      v => !!v || 'E-mail is required',
-      v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+      v => !!v || 'E-mail je potrebno unijeti',
+      v => /.+@.+\..+/.test(v) || 'Neispravan format emaila',
     ],
 
     return:{

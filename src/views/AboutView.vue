@@ -3,14 +3,14 @@
      
     <v-row style="text-align: center">
       <v-col cols="12">
-          <h2 style="color: white; font-size: 30px">Informacije o autorima projekta</h2>
+          <h2 style="color: black; font-size: 30px">Informacije o autorima projekta</h2>
       </v-col>
     </v-row>
 
     <v-row>
       <v-col cols="12" xl="6" lg="6" md="6" sm="12" xs="12" style="color: white; text-align: center; font-size: x-large;">
         <div>
-          <v-icon color="white" size="30px" @click="toGithubIvan()">mdi-github</v-icon>
+          <v-icon color="black" size="30px" @click="toGithubIvan()">mdi-github</v-icon>
           <h2>
             Ivan Raič
           </h2>
@@ -59,11 +59,11 @@
 
           <v-col cols="12" xl="6" lg="6" md="6" sm="12" xs="12" style="color: white; text-align: center; font-size: x-large">
             <div>
-              <v-icon color="white" size="30px" @click="toGithubNikola()">mdi-github</v-icon>
+              <v-icon color="black" size="30px" @click="toGithubNikola()">mdi-github</v-icon>
               <h2>
                 Nikola Gadže
               </h2>
-              <p style="text-align: center; margin-bottom: 30px;">
+              <p style="text-align: center; margin-bottom: 30px; ">
                 Nikola Gadže, rođen 9.11.2001 godine u Splitu,<br>
                 rodom iz Ljubuškog, a živi u okolici Ljubuškog.<br>
                 Završio Osnovnu školu Tina Ujevića u Vitini,<br>
@@ -110,7 +110,7 @@
           v-for="vision in visions" :key="vision" cols="12" xl="12" lg="12" md="12" sm="12" xs="12">
        
           <v-expansion-panel-header style="text-decoration: solid; text-align: center;">{{vision.ime}}</v-expansion-panel-header>
-          <v-expansion-panel-content>
+          <v-expansion-panel-content >
               {{ vision.opis }}
           </v-expansion-panel-content>
 
@@ -121,7 +121,7 @@
     <br><hr style="color:white"/>
     <v-row style="text-align: center">
         <v-col cols="12">
-          <h2 style="color: white; font-size: 30px">Tehnologije koje će se koristiti za izradu aplikacije</h2>
+          <h2 style="color: black; font-size: 30px">Tehnologije koje će se koristiti za izradu aplikacije</h2>
         </v-col>
       </v-row>
 
@@ -129,14 +129,14 @@
         <v-col v-for="tehnologija in tehnologije" :key="tehnologija" cols="12" xl="4" lg="4" md="6" sm="12" xs="12">
           <template>
             <v-hover v-slot="{ hover }" open-delay="200">
-              <v-card :elevation="hover ? 16 : 2" :class="{ 'on-hover': hover }" class="mx-auto my-12 blue-grey darken-4" max-width="374">
+              <v-card :elevation="hover ? 16 : 2" :class="{ 'on-hover': hover }" class="mx-auto my-12 cyan lighten-4" max-width="374">
               <template slot="progress">
                 <v-progress-linear color="deep-purple" height="10" indeterminate></v-progress-linear>
               </template>
 
               <v-img height="350" :src="tehnologija.slika"></v-img>
 
-              <v-card-title class="justify-center" style="color: white">{{ tehnologija.ime }}</v-card-title>
+              <v-card-title class="justify-center" style="color: black">{{ tehnologija.ime }}</v-card-title>
               </v-card>
             </v-hover>
           </template>
@@ -188,3 +188,11 @@
   
 }
 </script>
+<style scoped>
+h2{
+  color: black;
+}
+p{
+  color: black;
+}
+</style>

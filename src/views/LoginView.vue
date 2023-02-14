@@ -39,7 +39,7 @@
                 @click:append="passwordShow = !passwordShow"
               />
 
-              <p style="font-size: medium;">Nemate račun?<a href="/singup" style="text-decoration: none;"> Registrirajte se!</a></p>
+              <p style="font-size: medium;">Nemate račun?<a href="/signup" style="text-decoration: none;"> Registrirajte se!</a></p>
               <v-switch label="Zapamti me" color="primary"></v-switch>
             </v-card-text>
 
@@ -97,8 +97,9 @@
         }, 3000)
 
       }
-
-      
+    },
+    loadToSignUp(){
+      window.open('/singup', '_self')
     }
     
   }

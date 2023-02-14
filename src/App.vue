@@ -1,17 +1,17 @@
 <template>
   <v-app id="inspire">
 
-    <v-app-bar app class="blue-grey darken-4">
-      <v-app-bar-nav-icon style="color: white" @click="drawer = !drawer"></v-app-bar-nav-icon>
+    <v-app-bar app class="cyan lighten-5">
+      <v-app-bar-nav-icon style="color: black" @click="drawer = !drawer"></v-app-bar-nav-icon>
 
 
-      <v-toolbar-title style="color: white; margin-right: 10px;">Instrukcije</v-toolbar-title>
+      <v-toolbar-title style="color: black; margin-right: 10px;">Instrukcije</v-toolbar-title>
 
       <img src="./assets/sum_logo.png" width="120px" @click="backHome()">
 
       <v-spacer></v-spacer>
 
-      <v-toolbar-title style="color: white; margin-right: 10px; border-radius: 8px;">Prijavite se na sustav!</v-toolbar-title>
+      <v-toolbar-title style="color: black; margin-right: 10px; border-radius: 8px;">Prijavite se na sustav!</v-toolbar-title>
       
 
       
@@ -25,7 +25,7 @@
     
     
     <v-navigation-drawer
-      color="blue-grey darken-4"
+      color="blue-grey "
       v-model="drawer"
       fixed
       temporary
@@ -46,7 +46,7 @@
     </v-navigation-drawer>
 
 
-    <v-main class="blue-grey darken-4">
+    <v-main class="cyan lighten-5">
       <v-container fluid>
         <v-row>
           <v-col
@@ -91,6 +91,7 @@
       links: [
         {ime: 'Početna', ruta: '/', ikona: 'mdi-home'},
         {ime: 'O nama', ruta: '/about', ikona: 'mdi-help-box'},
+        {ime: 'Kontakt', ruta: '/contactUs', ikona: 'mdi-mail'},
         {ime: 'Registracija', ruta: '/signup', ikona: 'mdi-account-tag'},
         {ime: 'Prijava', ruta: '/login', ikona: 'mdi-login'},
         {ime: 'Pretražite instrukcije', ruta: '/searchInstructors', ikona: 'mdi-magnify'},
