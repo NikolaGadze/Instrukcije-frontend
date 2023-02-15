@@ -17,6 +17,32 @@
               <v-text-field append-icon="mdi-magnify" placeholder="Pretražite korisnike po imenu, mjestu ili predmetu.." clearable multiple outlined class="rounded-xl"></v-text-field>
 
             
+
+                <div class="d-flex justify-content-center">
+                  <v-btn rounded color="primary" dark>
+                      Pretraži!
+                    </v-btn>
+                </div>
+                
+            </div>
+          </div>
+        </v-col>
+
+        <v-col cols="12" xl="12" lg="12" md="12" sm="12" xs="12">
+          <div class="text-center">
+            <h5>Ako niste zadovoljni pretragom, možete primjeniti i filtraciju, odabrati i tražiti</h5>
+            <h5>po već unaprijed definiranim parametrima!</h5>
+            
+          </div>
+        </v-col>
+
+        <v-col cols="12" xl="12" lg="12" md="12" sm="12" xs="12">
+          <div class="container-fluid p-5 cyan lighten-4 text-white text-center" style="border-radius: 45px;">
+            <div class="container-fluid">
+              <v-text-field append-icon="mdi-pencil" placeholder="Ime" label="Ime" clearable></v-text-field>
+              
+              <v-text-field append-icon="mdi-pencil" placeholder="Prezime" label="Prezime" clearable></v-text-field>
+            
               
                 <v-select
                   v-model="countries"
@@ -47,7 +73,7 @@
 
                 <div class="d-flex justify-content-center">
                   <v-btn rounded color="primary" dark>
-                      Pretraži!
+                      Primjeni filtere!
                     </v-btn>
                 </div>
                 

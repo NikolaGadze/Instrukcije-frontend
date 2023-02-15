@@ -35,7 +35,7 @@
                 type="name"
                 label="Korisničko ime"
                 placeholder="Korisničko ime"
-                prepend-inner-icon="mdi-account"/>
+                prepend-inner-icon="mdi-account-circle"/>
             
               <v-text-field
                 v-model="email"

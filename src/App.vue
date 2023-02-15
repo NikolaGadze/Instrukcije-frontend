@@ -84,7 +84,7 @@
 <script>
   export default {
     data: () => ({
-      cards: ['Today', 'Yesterday'],
+      naslov: document.title = 'Instrukcije',
       drawer: null,
 
 
@@ -95,7 +95,8 @@
         {ime: 'Registracija', ruta: '/signup', ikona: 'mdi-account-tag'},
         {ime: 'Prijava', ruta: '/login', ikona: 'mdi-login'},
         {ime: 'Pretražite instrukcije', ruta: '/searchInstructors', ikona: 'mdi-magnify'},
-        {ime: 'Pretražite korisnike', ruta: '/searchUsers', ikona: 'mdi-account-group'}
+        {ime: 'Pretražite korisnike', ruta: '/searchUsers', ikona: 'mdi-account-group'},
+        {ime: 'Profil', ruta: '/profile', ikona: 'mdi-account-circle'}
     ]
 
 

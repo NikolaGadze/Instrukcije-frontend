@@ -19,12 +19,16 @@
           <v-form @submit.prevent="submitHandler" ref="form">
               <v-card-text>
                 <v-text-field
+                v-model="first_name"
+                :rules="firstNameRules"
                 type="name"
                 label="Ime"
                 placeholder="Ime"
                 prepend-inner-icon="mdi-account"/>
                 
                 <v-text-field
+                v-model="last_name"
+                :rules="lastNameRules"
                 type="name"
                 label="Prezime"
                 placeholder="Prezime"
@@ -37,13 +41,14 @@
                 type="email"
                 label="Email"
                 placeholder="Email"
-                prepend-inner-icon="mdi-email"/>
+                prepend-inner-icon="mdi-email" style="margin-bottom: 25px"/>
             
               
 
             
-
                 <v-textarea
+                v-model="message"
+                :rules="messageRules"
                 outlined
                 name="input-7-4"
                 label="Napišite kako vam možemo pomoći?">
@@ -54,7 +59,7 @@
     
 
             <v-card-actions class="justify-center">
-              <v-btn :loading="loading" type="submit" color="primary" mailto="raicivan06@gmail.com">
+              <v-btn :loading="loading" type="submit" color="primary" @click="sendEmail()">
                 <span class="white--text px-8">Pošalji</span> 
               </v-btn>
             </v-card-actions>
@@ -65,31 +70,65 @@
         </v-card>
       </v-col>
     </v-main>
+
+    <v-snackbar
+      v-model="snackbar"
+      color="success"
+    >
+      {{ text }}
+
+      <template v-slot:action="{ attrs }">
+        <v-btn
+          color="white"
+          text
+          v-bind="attrs"
+          @click="snackbar = false"
+        >
+          Zatvori
+        </v-btn>
+      </template>
+    </v-snackbar>
+
     
+
 
   </fragment> 
 </template>
 
 <script>
-
+import emailjs from 'emailjs-com';
 
 export default {
-  name: 'UserRegistrationView',
+  name: 'ContactUsView',
   data: () => ({
 
     
-
+    first_name: '',
+    last_name: '',
     email: '',
+    message: '',
+    firstNameRules: [
+      v => !!v || ' Potrebno je unijeti vaše ime!',
+    ],
+
+    lastNameRules: [
+      v => !!v || ' Potrebno je unijeti vaše prezime!',
+    ],
+
     emailRules: [
       v => !!v || 'E-mail je potrebno unijeti!',
       v => /.+@.+\..+/.test(v) || 'E-mail mora biti odgovarajućeg formata!',
     ],
+    messageRules: [
+      v => !!v || 'Potrebno je napisati zbog čega Vam je potrebna pomoć!',
+    ],
 
-    return:{
-      isEditing: false,
-      model: null,
-      
-    }
+    snackbar: false,
+    dialog2: false,
+    text: 'Vaši podatci su uspješno poslani!',
+  
+    
+
     
 
   }),
@@ -102,9 +141,43 @@ export default {
           this.loading = false
           this.snackbar = true
         }, 3000)}
+      },
+
+      sendEmail(e) {
+        
+
+
+        if((!this.first_name == '') && (!this.last_name == '') && (!this.age == '') && (!this.email == '')){
+          try {
+            //service_1b6o6zi
+            //template_4n9gko5
+            //jS33g69OXb2H-HKiF
+        emailjs.sendForm('service_1b6o6zi', 'template_4n9gko5', e.target,
+        'jS33g69OXb2H-HKiF', {
+          first_name: this.first_name,
+          last_name: this.last_name,
+          email: this.email,
+          message: this.message
+        })
+
+      } catch(error) {
+          console.log({error})
       }
+        }
+      
+          this.snackbar = true
+          this.first_name = ''
+          this.last_name = ''
+          this.email = ''
+          this.message = ''
+    },
+
+  
+  }
+
+    
        
   }
   
-}
+
 </script>

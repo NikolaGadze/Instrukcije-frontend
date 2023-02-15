@@ -31,11 +31,10 @@
                 prepend-inner-icon="mdi-account"/>
 
               <v-text-field
-                v-model="ime"
                 type="name"
                 label="Korisničko ime"
                 placeholder="Korisničko ime"
-                prepend-inner-icon="mdi-account"/>
+                prepend-inner-icon="mdi-account-circle"/>
             
               <v-text-field
                 v-model="email"
@@ -91,7 +90,7 @@
                 <v-textarea
                 outlined
                 name="input-7-4"
-                label="Unesite iz kojih predmeta tražite instrukcije">
+                label="Unesite naziv predmeta iz kojih tražite instrukcije">
               </v-textarea>
               </v-card-text>
 

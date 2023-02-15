@@ -5,7 +5,7 @@ import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import {BootstrapVue, IconsPlugin} from 'bootstrap-vue'
-
+import emailjs from 'emailjs-com'
 
 Vue.use(VueAxios, axios)
 
@@ -15,6 +15,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
+Vue.use(emailjs)
 
 Vue.config.productionTip = false
 

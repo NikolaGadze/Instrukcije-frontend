@@ -30,7 +30,7 @@
           <v-row>
             <v-btn @click="loadToSignup_predavac()" color="#FFFFFF" variant="outlined" 
             style="opacity: 0.9; border-radius: 5px; color: blue;"
-            > Registiraj se
+            > Registiraj se kao instruktor
             </v-btn>
           </v-row>
         </v-img>
@@ -74,7 +74,7 @@
             <v-btn @click="loadToSignup_student()" variant="outlined" 
             color="#FFFFFF" 
             style="opacity: 0.7; border-radius: 5px; color: blue;"
-            > Registiraj se</v-btn>
+            > Registiraj se kao korisnik</v-btn>
             
           </v-row>
         </v-img>
