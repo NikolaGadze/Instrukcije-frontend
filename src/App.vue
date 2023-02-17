@@ -45,7 +45,8 @@
       </v-list>
     </v-navigation-drawer>
 
-
+    
+    
     <v-main class="cyan lighten-5">
       <v-container fluid>
         <v-row>
@@ -57,25 +58,34 @@
         </v-row>
       </v-container>
     </v-main>
-
+    
+      <div class="novi_redak">
+      <!--color="primary"-->
       <v-footer
-        color="primary"
+        class="novi_redak" 
         padless
       >
         <v-row
           justify="center"
           no-gutters
         >
+        <!--blue darken-3 py-4 text-center white--text-->
           <v-col
-            class="blue darken-3 py-4 text-center white--text"
+            class="py-4 text-center white--text"
             cols="12"
           >
-            {{ new Date().getFullYear() }} — <strong>Ivan Raič i Nikola Gadže</strong>
+            {{ new Date().getFullYear() }} — <strong>Ivan Raič i Nikola Gadže </strong>
+
+            <v-btn @click="toInstagram()">
+              <v-icon>mdi-instagram</v-icon>
+            </v-btn>
+
             
           </v-col>
         </v-row>
       </v-footer>
-
+      </div>
+    
   </v-app>
 
   
@@ -113,6 +123,9 @@
       backHome(){
         window.open("/", "_self")
       },
+      toInstagram(){
+        window.open("https://www.instagram.com/", '_self')
+      }
       
       
       
@@ -121,6 +134,40 @@
 </script>
 <style scoped>
   
-
+  .novi_redak{
+    margin: 0;
+    padding: 0;
+    animation: bgcolor infinite 20s;
+    
+  }
+ 
+    
+  
+  @keyframes bgcolor{
+    0%
+    {
+      background-color: #e74c3c;
+    }
+    20%
+    {
+      background-color:#2980b9 ;
+    }
+    40%
+    {
+      background-color:#7f8fa6 ;
+    }
+    60%
+    {
+      background-color: #192a56;
+    }
+    80%
+    {
+      background-color:#34495e ;
+    }
+    100%{
+      background-color: #e74c3c;
+    }
+  }
+  
   
 </style>

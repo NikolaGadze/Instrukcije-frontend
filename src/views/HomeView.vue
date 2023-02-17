@@ -1,40 +1,50 @@
 <template>
-  <v-row>
-    
-      <v-col cols="6">
-        <v-img src="../assets/pocetna.jpg" class="slika"></v-img>
-      </v-col>
-      <v-col cols="6">
-      <p class="tekst">
-        Naziv projekta su Instrukcije,čiji je osnovni cilj studentima i učenicima omogućiti što lakše stupanje u kontakt s predavačima koji nude usluge instrukcija,
-        te koji se također kao korisnici prijavljuju na sustav.<br></p>
-      </v-col>
+    <div>
+      <div>
+      <v-row>
        
-    
-  
+        <v-col cols="6" xl="6" lg="6" md="6" sm="12" xs="12" >
+          <v-img src="../assets/pocetna.jpg" style="width: 600px; border-radius: 15px;" id="slika" ></v-img>
+        </v-col>
+        
+        
+        
+        <v-col cols="6" xl="6" lg="6" md="6" sm="12" xs="12">
+          
+          <h4 style="margin-top: 20%; text-align: center; text-shadow: 4px 4px lightskyblue;"> Što su online instrukcije? </h4>
+
+          <p style="text-align: center; margin-top: 5%; font-size: x-large;">
+          Naziv projekta su Instrukcije, čiji je osnovni cilj studentima i učenicima omogućiti što lakše stupanje u kontakt s predavačima koji 
+          nude usluge instrukcija. </p>
+          
+        </v-col>
+        
+
+      </v-row>
+      </div>
+
+      <div>
+      <v-row class="row" style="margin-top:5%;">
+        <v-col cols="6" xl="6" lg="6" md="6" sm="12" xs="12">
+
+          <h3 class="naslovi" style="text-align: center; margin-top: 25%; text-shadow: 4px 4px lightskyblue; margin-bottom: 0%; font-size: x-large;">Dobro došli na online instrukcije<br></h3>
+          <p  style="text-align: center; margin-top: 5% ;font-size: x-large;
+          ">Prijavite se kao Instruktor ili kao student i saznajte više o našoj aplikaciji</p>
+        </v-col>
+
+        <v-col cols="6" xl="6" lg="6" md="6" sm="12" xs="12">
+          <div> 
+            <v-img id="slika_d" src="../assets/test.png" ></v-img>
+          </div>
+        </v-col>
+
+      </v-row>
+      </div>
 
     
-      <v-col cols="6">
-        <v-img src="../assets/test.png" class="slika_dva"> </v-img>
-      </v-col>
+  </div>
 
-      
-      <v-col cols="6" >
-        <v-img src="../assets/slika.jpg" class="slika_tri">
-          <p class="tekst_dva">Motivaciju za ovaj projekt smo dobili jer smo i mi studenti i sami nekada imamo potrebu za pronalazak instrukcija. <br>
-          S obzirom na malu dostupnost predavača, te malu dostupnost provjernih informacija teško je stupiti u kontakt s dobrim i provjerenim predavačima.
-          <br> Ovim projektom želimo olakšati pronalazak dobrih i dostupnih predavača po željenim parametrima.</p>
 
-        </v-img>
-      
-      </v-col>
-      
-    
-    
-  </v-row>
-
-    
-  
 
 </template>
 
@@ -42,8 +52,6 @@
 export default {
   data:() => ({
    
-  
-
   }),
   methods: {
     
@@ -51,7 +59,47 @@ export default {
 }
 
 </script> 
-<style scoped>
+<style >
+
+  
+  #slika{
+    position: relative;
+    animation: mymove 3s;
+    animation-fill-mode: forwards;
+    
+    padding: 10px;
+    border:1px solid;
+    box-shadow: 5px 10px 18px black;
+    display: flex;
+  }
+  #slika:hover{
+    box-shadow: 15px 25px 38px black;
+  }
+  @keyframes mymove{
+    from {top: 0px;}
+    to {top: 200px; }
+  }
+  #slika_d{
+    position: relative;
+    animation: my 3s;
+    animation-fill-mode: forwards;
+    
+    padding: 10px;
+    border:1px solid;
+    box-shadow: 5px 10px 18px black;
+    display: flex;
+    border-radius: 15px;
+  }
+  @keyframes my{
+    from {top: -0px;}
+    to {top: -200px; }
+  }
+  #slika_d:hover{
+    box-shadow: 15px 25px 38px black;
+  }
+
+  
+</style>
 
 
 

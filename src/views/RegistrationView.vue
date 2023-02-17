@@ -3,9 +3,9 @@
     <v-col cols="12" xl="6" lg="6" md="12" sm="12" xs="12" >
       <v-row>
         <v-col>
-          <p id="naslov">Želite prenijeti znanje na druge?</p>
-          <p class="tekst"> Registriraj se kao instruktor i podijeli svoje znanje</p>
-          <p class="tekst">Kao instruktor imati ćete razne pogodnosti.<br>
+          <p id="naslov">Želite prenijeti znanje drugima?</p>
+          <p class="tekst"> Registrirajte se kao instruktor i podijelite svoje znanje</p>
+          <p class="tekst">Kao instruktor imate razne pogodnosti.<br>
             Moći ćete urediti svoj profil te kreirati učionicu za rad sa studentima. </p>
         </v-col>
       </v-row>
@@ -48,8 +48,8 @@
       <v-row>
         <v-col>
           <p id="naslov">Želite naučiti više?</p>
-          <p class="tekst">Registiraj se kao student/korisnik i pretraži nekoga tko ti može pomoći</p>
-          <p class="tekst">Kao korisnik imati ćete mogućnosti pretražiti instruktore po mjestu, predmetu koji želite naučiti i stupiti u kontakt s njima.</p>
+          <p class="tekst">Registirajte se kao student/korisnik i pretražite nekoga tko Vam može pomoći</p>
+          <p class="tekst">Kao korisnik imate mogućnosti pretražiti instruktore po mjestu, predmetu koji želite naučiti i stupiti u kontakt s njima.</p>
         </v-col>
       </v-row>
 

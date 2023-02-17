@@ -63,7 +63,7 @@
               <h2>
                 Nikola Gadže
               </h2>
-              <p style="text-align: center; margin-bottom: 30px; ">
+              <p  style="text-align: center; margin-bottom: 30px;" >
                 Nikola Gadže, rođen 9.11.2001 godine u Splitu,<br>
                 rodom iz Ljubuškog, a živi u okolici Ljubuškog.<br>
                 Završio Osnovnu školu Tina Ujevića u Vitini,<br>
@@ -195,4 +195,5 @@ h2{
 p{
   color: black;
 }
+
 </style>

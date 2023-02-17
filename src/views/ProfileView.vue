@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="profile">
         <v-container fluid style="margin-top: -1%;">
             <v-sheet
         min-height="100vh"
@@ -19,7 +19,7 @@
                 ></v-img>
                 </v-col>
 
-                <v-col cols="12" xl="6" lg="6" md="8" sm="9" xs="9">
+                <v-col cols="12" xl="6" lg="6" md="9" sm="9" xs="9">
                 <div style="margin-top: 5%; margin-left: 1%; margin-right: 3%;">
                     <v-text-field
                     :value="ime"
@@ -107,4 +107,6 @@
     
   }
   </script>
-  
+<style scoped>
+
+</style>

@@ -81,8 +81,10 @@
           <v-card
             :loading="loading"
             class="mx-auto my-12"
+            
             max-width="374"
-            style="border: 2px solid DodgerBlue;"
+            style="border: 2px solid DodgerBlue; box-shadow: 15px 25px 38px black;"
+            
           >
             
 
@@ -148,3 +150,6 @@
   
 }
 </script>
+<style scoped>
+ 
+</style>

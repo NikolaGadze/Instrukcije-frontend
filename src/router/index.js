@@ -63,6 +63,7 @@ const routes = [
     component: () => import('../views/ProfileView.vue')
   },
   
+  
 ]
   
 

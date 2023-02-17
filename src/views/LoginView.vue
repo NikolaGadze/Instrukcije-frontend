@@ -106,15 +106,6 @@
   
 }
 </script>
-<!--<style>
-  .background{
-    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoOMNNMWt6ZrmsmMNJ5VgAFY4mJXh3M5brdg&usqp=CAU) !important;
-    height: 350px;
-    width: 100%;
-    display: block;
-    position: absolute;
-    top:0;
-    background-size: cover;
-    
-  }
-</style>-->
+<style>
+
+</style>
