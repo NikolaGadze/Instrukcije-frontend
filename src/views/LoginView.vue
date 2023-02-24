@@ -44,7 +44,7 @@
             </v-card-text>
 
             <v-card-actions class="justify-center">
-              <v-btn :loading="loading" type="submit" color="primary"> 
+              <v-btn :loading="loading" type="submit" color="primary" @click="login"> 
                 <span class="white--text px-8"> Prijavite se </span> 
               </v-btn>
             </v-card-actions>
@@ -64,6 +64,9 @@
 </template>
 
 <script>
+
+import api from "@/plugins/api";
+
   export default {
   name: 'LoginView',
   data: () => ({
@@ -87,7 +90,19 @@
 
 
   methods: {
-
+    login() {
+      api.post('api/auth/login', {
+       'email': this.email,
+       'password': this.password
+      }).then(response => {
+        if (response.status === 200) {
+          // Add token to local storage
+          localStorage.setItem("app_token", response.data)
+          // Go to home
+          this.$router.push('/')
+        }
+      })
+    },
     submitHandler(){
       if (this.$refs.form.validate()){
         this.loading = true

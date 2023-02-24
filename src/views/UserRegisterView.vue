@@ -16,7 +16,7 @@
             <h2 class="primary--text"> Registrirajte se kao korisnik </h2>
           </div>
 
-          <v-form @submit.prevent="submitHandler" ref="form">
+          <v-form @submit.prevent="submitHandler" ref="form" enctype="multipart/form-data">
               <v-card-text>
                 <v-text-field
                 type="name"

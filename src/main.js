@@ -6,9 +6,10 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import {BootstrapVue, IconsPlugin} from 'bootstrap-vue'
 import emailjs from 'emailjs-com'
+import Vuelidate from 'vuelidate'
 
 Vue.use(VueAxios, axios)
-
+Vue.use(Vuelidate)
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'

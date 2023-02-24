@@ -62,6 +62,21 @@ const routes = [
     name: 'profile',
     component: () => import('../views/ProfileView.vue')
   },
+  {
+    path: '/management',
+    name: 'management',
+    component: () => import('../views/ManagementView.vue')
+  },
+  {
+    path: '/filterInstructors',
+    name: 'filterInstructors',
+    component: () => import('../views/FilterInstructorsView.vue')
+  },
+  {
+    path: '/filterUsers',
+    name: 'filterUsers',
+    component: () => import('../views/FilterUsersView.vue')
+  },
   
   
 ]

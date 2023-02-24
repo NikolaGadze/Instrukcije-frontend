@@ -16,87 +16,129 @@
             <h2 class="primary--text"> Registrirajte se kao instruktor </h2>
           </div>
 
-          <v-form @submit.prevent="submitHandler" ref="form">
-              <v-card-text>
-                <v-text-field
-                type="name"
-                label="Ime"
-                placeholder="Ime"
-                prepend-inner-icon="mdi-account"/>
+          <v-form @submit.prevent="submit" ref="form" enctype="multipart/form-data" method="post">
+
+
+              <div>
+                <v-card-text>
+                  <div>
+                    <v-text-field
+                      v-model="form.first_name"
+                      :rules="validations.form.first_name"
+                      type="name"
+                      label="Ime"
+                      placeholder="Ime"
+                      prepend-inner-icon="mdi-account"/>
+                  </div>
+                  
+
+                  <div>
+                    <v-text-field
+                    v-model="form.last_name"
+                    :rules="validations.form.last_name"
+                    type="name"
+                    label="Prezime"
+                    placeholder="Prezime"
+                    prepend-inner-icon="mdi-account"/>
+                  </div>
+
+
+                  <div>
+                    <v-text-field
+                    v-model="form.username"
+                    :rules="validations.form.username"
+                    type="name"
+                    label="Korisničko ime"
+                    placeholder="Korisničko ime"
+                    prepend-inner-icon="mdi-account-circle"/>
+                  </div>
                 
-                <v-text-field
-                type="name"
-                label="Prezime"
-                placeholder="Prezime"
-                prepend-inner-icon="mdi-account"/>
 
-              <v-text-field
-                v-model="ime"
-                type="name"
-                label="Korisničko ime"
-                placeholder="Korisničko ime"
-                prepend-inner-icon="mdi-account-circle"/>
-            
-              <v-text-field
-                v-model="email"
-                :rules="emailRules"
-                type="email"
-                label="Email"
-                placeholder="Email"
-                prepend-inner-icon="mdi-email"/>
-            
-              <v-text-field
-                v-model="password"
-                :rules="passwordRules"
-                :type="passwordShow? 'text' : 'password'"
-                label="Lozinka"
-                placeholder="Lozinka"
-                prepend-inner-icon="mdi-key"
-                :append-icon="passwordShow ? 'mdi-eye' : 'mdi-eye-off'"
-                @click:append="passwordShow = !passwordShow"/>
-              <v-text-field
-                v-model="conf_password"
-                :rules="password_Rules"
-                :type="password_Show? 'text' : 'password'"
-                label="Potvrda lozinke"
-                placeholder="Potvrda lozinke"
-                prepend-inner-icon="mdi-key"
-                :append-icon="password_Show ? 'mdi-eye' : 'mdi-eye-off'"
-                @click:append="password_Show = !password_Show"/>
-
-                <v-text-field
-                type="phone"
-                label="Broj telefona"
-                placeholder="Broj telefona"
-                prepend-inner-icon="mdi-phone"/>
-
-                <v-file-input
-                  :rules="rules"
-                  accept="image/png, image/jpeg, image/bmp"
-                  placeholder="Odaberite fotografiju"
-                  prepend-icon="mdi-camera"
-                  label="Slika">
-                </v-file-input>
-
-                <v-autocomplete      
-                prepend-icon="mdi-flag"
-                label="Odaberite državu">
-                </v-autocomplete>
-
-                <v-autocomplete      
-                prepend-icon="mdi-city"
-                label="Odaberite grad">
-                </v-autocomplete>
-
-                <v-autocomplete      
-                prepend-icon="mdi-school"
-                label="Odaberite predmet">
-                </v-autocomplete>
-
+                  <div>
+                    <v-text-field
+                    v-model="form.email"
+                    :rules="validations.form.email"
+                    type="email"
+                    label="Email"
+                    placeholder="Email"
+                    prepend-inner-icon="mdi-email"/>
+                  </div>
                 
+                
+                  <div>
+                    <v-text-field
+                    v-model="form.password"
+                    :rules="validations.form.password"
+                    :type="passwordShow? 'text' : 'password'"
+                    label="Lozinka"
+                    placeholder="Lozinka"
+                    prepend-inner-icon="mdi-key"
+                    :append-icon="passwordShow ? 'mdi-eye' : 'mdi-eye-off'"
+                    @click:append="passwordShow = !passwordShow"/>
+               
+                  </div>
+
+              
+                  <div>
+                    <v-text-field
+                    v-model="form.password_confirmation"
+                    :rules="validations.form.password_confirmation"
+                    :type="password_Show? 'text' : 'password'"
+                    label="Potvrda lozinke"
+                    placeholder="Potvrda lozinke"
+                    prepend-inner-icon="mdi-key"
+                    :append-icon="password_Show ? 'mdi-eye' : 'mdi-eye-off'"
+                    @click:append="password_Show = !password_Show"/>
+                  </div>
+
+                  
+                  <div>
+                    <v-text-field
+                    v-model="form.phone"
+                    :rules="validations.form.phone"
+                    type="phone"
+                    label="Broj telefona"
+                    placeholder="Broj telefona"
+                    prepend-inner-icon="mdi-phone"/>
+                  </div>
+              
+              
+
+                  <div>
+                    <v-autocomplete
+                    v-model="form.country_name"
+                    :rules="validations.form.country_name"
+                    :items="countries"    
+                    prepend-icon="mdi-flag"
+                    label="Odaberite državu">
+                    </v-autocomplete>
+                  </div>
+
+
+                  <div>
+                    <v-autocomplete
+                    v-model="form.city_name" 
+                    :rules="validations.form.city_name"
+                    :items="cities" 
+                    prepend-icon="mdi-city"
+                    label="Odaberite grad">
+                    </v-autocomplete>
+                  </div>
+
+
+                  <div>
+                    <v-autocomplete
+                    v-model="form.subject_name"
+                    :rules="validations.form.subject_name"
+                    :items="subjects"   
+                    prepend-icon="mdi-school"
+                    label="Odaberite predmet">
+                    </v-autocomplete>
+                  </div>          
               </v-card-text>
+              </div>
 
-
+              
     
 
             <v-card-actions class="justify-center">
@@ -111,65 +153,79 @@
         </v-card>
       </v-col>
     </v-main>
-    <v-snackbar color="green" v-model="snackbar">
-      Login success
-    </v-snackbar>
-
-  </fragment> 
+    
+  </fragment>
 </template>
 
 <script>
+
+import api from "@/plugins/api";
+import { required, email, minLength, sameAs } from 'vuelidate/lib/validators'
 
 
 export default {
   name: 'InstructorRegisterView',
   data: () => ({
+    form: {
+      first_name: null,
+      last_name: null,
+      username: null,
+      email: null,
+      password: null,
+      password_confirmation: null,
+      phone: null,
+      country_name: null,
+      city_name: null,
+      subject_name : null,
+    },
+    isSubmitted: false,
 
-    loading: false,
-    snackbar: false,
+    validations: {
+    form: {
+      first_name: { required },
+      last_name: { required },
+      username: { required },
+      email: { required, email },
+      password: { required , minLength: minLength(6) },
+      password_confirmation: { required, sameAsPassword: sameAs('password') },
+      phone: { required },
+      country_name: { required },
+      city_name: { required },
+      subject_name: { required }
+    }
+  },
+    
+
+    countries: ['Hrvatska', 'Srbija', 'Bosna i Hercegovina'],
+    cities: ['Zagreb', 'Split', 'Osijek', 'Rijeka', 'Beograd', 'Novi Sad', 'Niš','Kragujevac', 'Sarajevo', 'Mostar', 'Banja Luka', 'Tuzla'],
+    subjects : ['Programiranje', 'Anatomija', 'Matematika'],
+    
 
     passwordShow: false,
-    password: '',
-    passwordRules: [
-      v => !!v || 'Lozinku je potrebno unijeti',
-      v => (v && v.length >= 6) || 'Lozinka mora imati 6 ili više znakova!',
-    ],
+    
 
     password_Show: false,
-    conf_password: '',
-    password_Rules: [
-      v => !!v || 'Lozinku je potrebno unijeti',
-      v => (v && v.length >= 6) || 'Lozinka mora imati 6 ili više znakova!',
-    ],
-
-    email: '',
-    emailRules: [
-      v => !!v || 'E-mail je potrebno unijeti',
-      v => /.+@.+\..+/.test(v) || 'Neispravan format emaila',
-    ],
-
-    return:{
-      isEditing: false,
-      model: null,
-      states:[
-        'Hrvatska', 'Bosna i Hercegovina', 'Srbija',
-      ],
-    }
-    
+   
 
   }),
 
   methods: {
-    submitHandler(){
-      if (this.$refs.form.validate()){
-        this.loading = true
-        setTimeout(() => {
-          this.loading = false
-          this.snackbar = true
-        }, 3000)}
-      }
-       
+      registerAsInstructor() {
+        api.post('api/auth/registerAsInstructor', this.form).then(response => {
+        // After register, go to login
+        this.$router.push('/login')
+         
+      })
+    },
+
+    submit() {
+      alert('Radi!')
+
+      
+    }
   }
+
+
   
 }
 </script>

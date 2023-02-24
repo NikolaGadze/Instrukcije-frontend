@@ -4,30 +4,54 @@
       <v-row>
         <v-col cols="12" xl="12" lg="12" md="12" sm="12" xs="12">
           <div class="text-center">
-            <h1 style="margin-bottom: 20px;">Pretraga studenta</h1>
-            <h5>Ovdje možete pretraživati studente po predmetu iz kojeg traže instrukcije, gradu i državi iz kojih dolaze.</h5>
-            <h5>Također možete ih pretraživati po njihovom imenu i prezimenu, a ako ima previše podataka, možete ih</h5>
-            <h5>filtrirati na ruti za filtraciju studenta po određenim kategorijama.</h5>
+            <h1 style="margin-bottom: 20px;">Filtriranje studenta</h1>
+            <h5>Ovdje možete primjeniti filtraciju studenta, tako da ih potražujete</h5>
+            <h5>po predmetu iz kojeg traže instrukcije, gradu i državi iz kojih dolaze.</h5>
           </div>
         </v-col>
+
+        
 
         <v-col cols="12" xl="12" lg="12" md="12" sm="12" xs="12">
           <div class="container-fluid p-5 cyan lighten-4 text-white text-center" style="border-radius: 45px;">
             <div class="container-fluid">
-              <v-text-field append-icon="mdi-magnify" placeholder="Pretražite korisnike po imenu, mjestu ili predmetu.." clearable multiple outlined class="rounded-xl" v-model="search"></v-text-field>
+              
+              
 
-            
+                <v-autocomplete
+                v-model="country"
+                :items="countries"    
+                prepend-icon="mdi-flag"
+                label="Odaberite državu">
+                </v-autocomplete>
+
+                <v-autocomplete
+                v-model="city" 
+                :items="cities" 
+                prepend-icon="mdi-city"
+                label="Odaberite grad">
+                </v-autocomplete>
+
+                <v-autocomplete
+                v-model="subject"
+                :items="subjects"   
+                prepend-icon="mdi-school"
+                label="Odaberite predmet">
+                </v-autocomplete>
 
                 <div class="d-flex justify-content-center">
-                  <v-btn rounded color="primary" dark @click="searchUsers()">
-                      Pretraži!
+                  <v-btn rounded color="primary" dark @click="filterUsers()">
+                      Primjeni filtere!
                     </v-btn>
                 </div>
                 
+
+
             </div>
           </div>
         </v-col>
-
+    
+        
 
         <v-col cols="12" xl="4" lg="4" md="6" sm="12" xs="12" v-for="user in users" :key="user.username">
           <v-card
@@ -54,7 +78,7 @@
         </v-col>
 
         <v-col cols="12" xl="12" lg="12" md="12" sm="12" xs="12">
-          <div class="text-center" v-if="show" @click="searchUsers()">
+          <div class="text-center" v-if="show" @click="filterUsers()">
             <v-pagination
               v-model="current_page"
               :length="totalPages"
@@ -147,11 +171,15 @@
 <script>
 import api from "@/plugins/api";
   export default {
-  name: 'SearchInstructorsView',
+  name: 'FilterUsersView',
   data: () => ({
     countries: ['Hrvatska', 'Srbija', 'Bosna i Hercegovina'],
     cities: ['Zagreb', 'Split', 'Osijek', 'Rijeka', 'Beograd', 'Novi Sad', 'Niš','Kragujevac', 'Sarajevo', 'Mostar', 'Banja Luka', 'Tuzla'],
-    users : [],
+    subjects : ['Programiranje', 'Anatomija', 'Matematika'],
+    country: '',
+    city : '',
+    subject : '',
+    users: [],
     current_page: null,
     first_page_url : null,
     from: null,
@@ -171,7 +199,7 @@ import api from "@/plugins/api";
     totalPages : null,
     user: null,
     snackbar: false,
-    text: 'Korisnik nije pronađen.',
+    text: 'Instruktor nije pronađen.',
     message: null
   
   }),
@@ -190,8 +218,8 @@ import api from "@/plugins/api";
 
       
       
-      searchUsers() {
-          api.get('api/auth/search-users?search=' + this.search + '&page=' + this.current_page).then(response => {
+      filterUsers() {
+          api.get('api/auth/filter-users' + '?' + '&country=' +this.country + '&city=' + this.city + '&description=' + this.subject +'&page=' + this.current_page).then(response => {
       if(response.status == 200) {
           this.users = response.data.data
           this.current_page = response.data.current_page

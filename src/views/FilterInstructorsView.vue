@@ -4,32 +4,56 @@
       <v-row>
         <v-col cols="12" xl="12" lg="12" md="12" sm="12" xs="12">
           <div class="text-center">
-            <h1 style="margin-bottom: 20px;">Pretraga studenta</h1>
-            <h5>Ovdje možete pretraživati studente po predmetu iz kojeg traže instrukcije, gradu i državi iz kojih dolaze.</h5>
-            <h5>Također možete ih pretraživati po njihovom imenu i prezimenu, a ako ima previše podataka, možete ih</h5>
-            <h5>filtrirati na ruti za filtraciju studenta po određenim kategorijama.</h5>
+            <h1 style="margin-bottom: 20px;">Filtriranje instruktora</h1>
+            <h5>Ovdje možete primjeniti filtraciju instruktora, tako da ih potražujete</h5>
+            <h5>po predmetu iz kojeg drže instrukcije, gradu i državi iz kojih dolaze.</h5>
           </div>
         </v-col>
+
+        
 
         <v-col cols="12" xl="12" lg="12" md="12" sm="12" xs="12">
           <div class="container-fluid p-5 cyan lighten-4 text-white text-center" style="border-radius: 45px;">
             <div class="container-fluid">
-              <v-text-field append-icon="mdi-magnify" placeholder="Pretražite korisnike po imenu, mjestu ili predmetu.." clearable multiple outlined class="rounded-xl" v-model="search"></v-text-field>
+              
+              
 
-            
+                <v-autocomplete
+                v-model="country"
+                :items="countries"    
+                prepend-icon="mdi-flag"
+                label="Odaberite državu">
+                </v-autocomplete>
+
+                <v-autocomplete
+                v-model="city" 
+                :items="cities" 
+                prepend-icon="mdi-city"
+                label="Odaberite grad">
+                </v-autocomplete>
+
+                <v-autocomplete
+                v-model="subject"
+                :items="subjects"   
+                prepend-icon="mdi-school"
+                label="Odaberite predmet">
+                </v-autocomplete>
 
                 <div class="d-flex justify-content-center">
-                  <v-btn rounded color="primary" dark @click="searchUsers()">
-                      Pretraži!
+                  <v-btn rounded color="primary" dark @click="filterInstructors()">
+                      Primjeni filtere!
                     </v-btn>
                 </div>
                 
+
+
             </div>
           </div>
         </v-col>
+    
+        
 
-
-        <v-col cols="12" xl="4" lg="4" md="6" sm="12" xs="12" v-for="user in users" :key="user.username">
+        <v-col cols="12" xl="4" lg="4" md="6" sm="12" xs="12" v-for="instructor in instructors" :key="instructor.username">
           <v-card
             :loading="loading"
             class="mx-auto my-12"
@@ -44,17 +68,17 @@
               style="border-bottom: 2px solid DodgerBlue;"
             ></v-img>
 
-            <v-card-title class="justify-center">{{ user.first_name + ' ' + user.last_name }}</v-card-title>
+            <v-card-title class="justify-center">{{ instructor.first_name + ' ' + instructor.last_name }}</v-card-title>
 
             <div class="d-flex justify-center" style="margin-bottom: 3%;">
-              <v-btn color="primary" @click="showDetails(user)">Detalji!</v-btn>
+              <v-btn color="primary" @click="showDetails(instructor)">Detalji!</v-btn>
             </div>
             
           </v-card>
         </v-col>
 
         <v-col cols="12" xl="12" lg="12" md="12" sm="12" xs="12">
-          <div class="text-center" v-if="show" @click="searchUsers()">
+          <div class="text-center" v-if="show" @click="filterInstructors()">
             <v-pagination
               v-model="current_page"
               :length="totalPages"
@@ -74,31 +98,31 @@
     >
       <v-card>
         <v-card-title class="text-h5 blue darken-1 mb-5 white--text">
-          {{ selected_user.first_name + ' ' +  selected_user.last_name}}
+          {{ selected_instructor.first_name + ' ' +  selected_instructor.last_name}}
         </v-card-title>
 
         <v-card-text style="color: black; font-size: larger;">
-          <b>Grad:</b> {{ selected_user.city_name}}   
+          <b>Grad:</b> {{ selected_instructor.city_name}}   
         </v-card-text>
 
         <v-card-text style="color: black; font-size: larger;">
-          <b>Država:</b> {{ selected_user.country_name}}   
+          <b>Država:</b> {{ selected_instructor.country_name}}   
         </v-card-text>
 
         <v-card-text style="color: black; font-size: larger;">
-          <b>Email:</b> {{ selected_user.email}}   
+          <b>Email:</b> {{ selected_instructor.email}}   
         </v-card-text>
 
         <v-card-text style="color: black; font-size: larger;">
-          <b>Broj telefona:</b> {{ selected_user.phone}}   
+          <b>Broj telefona:</b> {{ selected_instructor.phone}}   
         </v-card-text>
 
         <v-card-text style="color: black; font-size: larger;">
-          <b>Korisničko ime:</b> {{ selected_user.username}}   
+          <b>Korisničko ime:</b> {{ selected_instructor.username}}   
         </v-card-text>
 
         <v-card-text style="color: black; font-size: larger;">
-          <b>Predmet:</b> {{ selected_user.description}}   
+          <b>Predmet:</b> {{ selected_instructor.subject_name}}   
         </v-card-text>
 
         
@@ -147,11 +171,15 @@
 <script>
 import api from "@/plugins/api";
   export default {
-  name: 'SearchInstructorsView',
+  name: 'FilterInstructorsView',
   data: () => ({
     countries: ['Hrvatska', 'Srbija', 'Bosna i Hercegovina'],
     cities: ['Zagreb', 'Split', 'Osijek', 'Rijeka', 'Beograd', 'Novi Sad', 'Niš','Kragujevac', 'Sarajevo', 'Mostar', 'Banja Luka', 'Tuzla'],
-    users : [],
+    subjects : ['Programiranje', 'Anatomija', 'Matematika'],
+    country: '',
+    city : '',
+    subject : '',
+    instructors : [],
     current_page: null,
     first_page_url : null,
     from: null,
@@ -166,12 +194,12 @@ import api from "@/plugins/api";
     total : null,
     search: '',
     dialog: false,
-    selected_user: {},
+    selected_instructor: {},
     show : false,
     totalPages : null,
     user: null,
     snackbar: false,
-    text: 'Korisnik nije pronađen.',
+    text: 'Instruktor nije pronađen.',
     message: null
   
   }),
@@ -190,10 +218,10 @@ import api from "@/plugins/api";
 
       
       
-      searchUsers() {
-          api.get('api/auth/search-users?search=' + this.search + '&page=' + this.current_page).then(response => {
+      filterInstructors() {
+          api.get('api/auth/filter-instructors' + '?' + '&country=' +this.country + '&city=' + this.city + '&subject=' + this.subject +'&page=' + this.current_page).then(response => {
       if(response.status == 200) {
-          this.users = response.data.data
+          this.instructors = response.data.data
           this.current_page = response.data.current_page
           this.first_page_url = response.data.first_page_url
           this.from = response.data.from
@@ -218,8 +246,8 @@ import api from "@/plugins/api";
     })
       },
 
-      showDetails(selected_user) {
-        this.selected_user = selected_user
+      showDetails(selected_instructor) {
+        this.selected_instructor = selected_instructor
         this.dialog = true
       }
 
