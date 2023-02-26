@@ -16,11 +16,11 @@
             <h2 class="primary--text"> Kontaktirajte nas putem emaila!</h2>
           </div>
 
-          <v-form @submit.prevent="sendEmail" ref="form">
+          <v-form @submit.prevent="submitHandler" ref="form">
               <v-card-text>
-                <v-text-field v-model="to" label="Email" append-icon="mdi-mail" required></v-text-field>
-                <v-text-field v-model="subject" label="Naslov" append-icon="mdi-text-long" required></v-text-field>
-                <v-textarea v-model="message" label="Poruka" append-icon="mdi-pencil" outlined required></v-textarea>
+                <v-text-field v-model="to" :rules="toRules" label="Email" append-icon="mdi-mail" required></v-text-field>
+                <v-text-field v-model="subject" :rules="subjectRules" label="Naslov" append-icon="mdi-text-long" required style="margin-bottom: 8%"></v-text-field>
+                <v-textarea v-model="message" :rules="messageRules" label="Poruka" append-icon="mdi-pencil" outlined required></v-textarea>
               </v-card-text>
 
 
@@ -90,7 +90,23 @@ export default {
     snackbar : false,
     error_snackbar: false,
     text: "Email je uspješno poslan!",
-    text2: "Pogreška pri slanju emaila!"
+    text2: "Pogreška pri slanju emaila!",
+
+    toRules: [
+      v => !!v || 'Potrebno je unijeti email',
+      v => /.+@.+\..+/.test(v) || 'Neispravan format email adrese!',
+    ],
+
+    subjectRules: [
+      v => !!v || 'Potrebno je unijeti naslov emaila',
+      v => (v && v.length >= 3) || 'Naslov emaila mora imati 3 ili više slova!',
+    ],
+
+    messageRules: [
+      v => !!v || 'Potrebno je unijeti poruku',
+      v => (v && v.length >= 3) || 'Poruka mora imati 3 ili više slova!',
+    ],
+    
   }),
 
   methods: {
@@ -120,7 +136,15 @@ export default {
         this.error_snackbar = true
         console.error(error)
       }
-    }
+    },
+
+    submitHandler() {
+      if (this.$refs.form.validate()){
+  
+        this.sendEmail()
+        
+        }
+      }
 
   
   }
