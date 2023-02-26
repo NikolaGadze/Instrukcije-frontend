@@ -16,85 +16,131 @@
             <h2 class="primary--text"> Registrirajte se kao korisnik </h2>
           </div>
 
-          <v-form @submit.prevent="submitHandler" ref="form" enctype="multipart/form-data">
-              <v-card-text>
-                <v-text-field
-                type="name"
-                label="Ime"
-                placeholder="Ime"
-                prepend-inner-icon="mdi-account"/>
+          <v-form @submit.prevent="submitHandler" ref="form" enctype="multipart/form-data" method="post">
+
+
+              <div>
+                <v-card-text>
+                  <div>
+                    <v-text-field
+                      v-model="form.first_name"
+                      :rules="firstNameRules"
+                      required
+                      type="name"
+                      label="Ime"
+                      placeholder="Ime"
+                      prepend-inner-icon="mdi-account"/>
+                  </div>
+                  
+
+                  <div>
+                    <v-text-field
+                    v-model="form.last_name"
+                    :rules="lastNameRules"
+                    type="name"
+                    label="Prezime"
+                    placeholder="Prezime"
+                    prepend-inner-icon="mdi-account"/>
+                  </div>
+
+
+                  <div>
+                    <v-text-field
+                    v-model="form.username"
+                    :rules="usernameRules"
+                    type="name"
+                    label="Korisničko ime"
+                    placeholder="Korisničko ime"
+                    prepend-inner-icon="mdi-account-circle"/>
+                  </div>
                 
-                <v-text-field
-                type="name"
-                label="Prezime"
-                placeholder="Prezime"
-                prepend-inner-icon="mdi-account"/>
 
-              <v-text-field
-                type="name"
-                label="Korisničko ime"
-                placeholder="Korisničko ime"
-                prepend-inner-icon="mdi-account-circle"/>
-            
-              <v-text-field
-                v-model="email"
-                :rules="emailRules"
-                type="email"
-                label="Email"
-                placeholder="Email"
-                prepend-inner-icon="mdi-email"/>
-            
-              <v-text-field
-                v-model="password"
-                :rules="passwordRules"
-                :type="passwordShow? 'text' : 'password'"
-                label="Lozinka"
-                placeholder="Lozinka"
-                prepend-inner-icon="mdi-key"
-                :append-icon="passwordShow ? 'mdi-eye' : 'mdi-eye-off'"
-                @click:append="passwordShow = !passwordShow"/>
-              <v-text-field
-                v-model="conf_password"
-                :rules="password_Rules"
-                :type="password_Show? 'text' : 'password'"
-                label="Potvrda lozinke"
-                placeholder="Potvrda lozinke"
-                prepend-inner-icon="mdi-key"
-                :append-icon="password_Show ? 'mdi-eye' : 'mdi-eye-off'"
-                @click:append="password_Show = !password_Show"/>
+                  <div>
+                    <v-text-field
+                    v-model="form.email"
+                    :rules="emailRules"
+                    type="email"
+                    label="Email"
+                    placeholder="Email"
+                    prepend-inner-icon="mdi-email"/>
+                  </div>
+                
+                
+                  <div>
+                    <v-text-field
+                    v-model="form.password"
+                    :rules="passwordRules"
+                    :type="passwordShow? 'text' : 'password'"
+                    label="Lozinka"
+                    placeholder="Lozinka"
+                    prepend-inner-icon="mdi-key"
+                    :append-icon="passwordShow ? 'mdi-eye' : 'mdi-eye-off'"
+                    @click:append="passwordShow = !passwordShow"/>
+               
+                  </div>
 
-                <v-text-field
-                type="phone"
-                label="Broj telefona"
-                placeholder="Broj telefona"
-                prepend-inner-icon="mdi-phone"/>
+              
+                  <div>
+                    <v-text-field
+                    v-model="form.password_confirmation"
+                    :rules="passwordConfirmationRules"
+                    :type="password_Show? 'text' : 'password'"
+                    label="Potvrda lozinke"
+                    placeholder="Potvrda lozinke"
+                    prepend-inner-icon="mdi-key"
+                    :append-icon="password_Show ? 'mdi-eye' : 'mdi-eye-off'"
+                    @click:append="password_Show = !password_Show"/>
+                  </div>
 
-                <v-file-input
-                  :rules="rules"
-                  accept="image/png, image/jpeg, image/bmp"
-                  placeholder="Odaberite fotografiju"
-                  prepend-icon="mdi-camera"
-                  label="Slika">
-                </v-file-input>
+                  
+                  <div>
+                    <v-text-field
+                    v-model="form.phone"
+                    :rules="phoneRules"
+                    type="phone"
+                    label="Broj telefona"
+                    placeholder="Broj telefona"
+                    prepend-inner-icon="mdi-phone"/>
+                  </div>
+              
+              
 
-                <v-autocomplete      
-                prepend-icon="mdi-flag"
-                label="Odaberite državu">
-                </v-autocomplete>
+                  <div>
+                    <v-autocomplete
+                    v-model="form.country_name"
+                    :rules="countryNameRules"
+                    :items="countries"    
+                    prepend-icon="mdi-flag"
+                    label="Odaberite državu">
+                    </v-autocomplete>
+                  </div>
 
-                <v-autocomplete      
-                prepend-icon="mdi-city"
-                label="Odaberite grad">
-                </v-autocomplete>
 
-                <v-textarea
-                outlined
-                name="input-7-4"
-                label="Unesite naziv predmeta iz kojih tražite instrukcije">
-              </v-textarea>
+                  <div>
+                    <v-autocomplete
+                    v-model="form.city_name" 
+                    :rules="cityNameRules"
+                    :items="cities" 
+                    prepend-icon="mdi-city"
+                    label="Odaberite grad">
+                    </v-autocomplete>
+                  </div>
+
+                  <div>
+                    <v-textarea
+                      v-model="form.description"
+                      :rules="descriptionNameRules"
+                      outlined
+                      name="input-7-4"
+                      label="Unesite naziv predmeta iz kojih tražite instrukcije">
+                    </v-textarea>
+                  </div>
+
+                        
               </v-card-text>
+              </div>
 
-
+              
     
 
             <v-card-actions class="justify-center">
@@ -109,64 +155,99 @@
         </v-card>
       </v-col>
     </v-main>
-    <v-snackbar color="green" v-model="snackbar">
-      Login success
-    </v-snackbar>
-
-  </fragment> 
+    
+  </fragment>
 </template>
 
 <script>
-
-
+import api from "@/plugins/api";
 export default {
-  name: 'UserRegistrationView',
+  name: 'InstructorRegisterView',
   data: () => ({
-
-    loading: false,
-    snackbar: false,
-
-    passwordShow: false,
-    password: '',
-    passwordRules: [
-      v => !!v || 'Password is required',
-      v => (v && v.length >= 6) || 'Password must be 6 characters or more!',
-    ],
-
-    password_Show: false,
-    conf_password: '',
-    password_Rules: [
-      v => !!v || 'Password is required',
-      v => (v && v.length >= 6) || 'Password must be 6 characters or more!',
-    ],
-
-    email: '',
-    emailRules: [
-      v => !!v || 'E-mail is required',
-      v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
-    ],
-
-    return:{
-      isEditing: false,
-      model: null,
-      states:[
-        'Hrvatska', 'Bosna i Hercegovina', 'Srbija',
-      ],
-    }
+    form: {
+      first_name: null,
+      last_name: null,
+      username: null,
+      email: null,
+      password: null,
+      password_confirmation: null,
+      phone: null,
+      country_name: null,
+      city_name: null,
+      description: null
+    },
     
+    countries: ['Hrvatska', 'Srbija', 'Bosna i Hercegovina'],
+    cities: ['Zagreb', 'Split', 'Osijek', 'Rijeka', 'Beograd', 'Novi Sad', 'Niš','Kragujevac', 'Sarajevo', 'Mostar', 'Banja Luka', 'Tuzla'],
+    subjects : ['Programiranje', 'Anatomija', 'Matematika'],
+    
+    passwordShow: false,
+    
+    password_Show: false,
 
+    firstNameRules: [
+      v => !!v || 'Ime je potrebno unijeti',
+      v => (v && v.length >= 2) || 'Ime mora imati 2 ili više slova!',
+    ],
+
+    lastNameRules: [
+      v => !!v || 'Prezime je potrebno unijeti',
+      v => (v && v.length >= 2) || 'Prezime mora imati 2 ili više slova!',
+    ],
+
+    usernameRules: [
+      v => !!v || 'Korisničko ime je potrebno unijeti',
+      v => (v && v.length >= 2) || 'Korisničko ime mora imati 2 ili više slova!',
+    ],
+
+    emailRules: [
+      v => !!v || 'Potrebno je unijeti email',
+      v => /.+@.+\..+/.test(v) || 'Neispravan format email adrese!',
+    ],
+
+    passwordRules: [
+      v => !!v || 'Lozinku je potrebno unijeti',
+      v => (v && v.length >= 6) || 'Lozinka mora imati 6 ili više znakova!',
+    ],
+
+    passwordConfirmationRules: [
+      v => !!v || 'Potvrdu lozinke je potrebno unijeti',
+    ],
+
+    phoneRules: [
+      v => !!v || 'Potrebno je unijeti broj telefona',
+      v => (v && v.length >= 9) || 'Broj telefona mora imati 9 ili više znakova!',
+    ],
+
+    countryNameRules: [
+      v => !!v || 'Potrebno je odabrati državu',
+    ],
+
+    cityNameRules: [
+      v => !!v || 'Potrebno je odabrati grad',
+    ],
+
+    descriptionNameRules: [
+      v => !!v || 'Potrebno je unijeti neki predmet',
+    ],
+
+   
   }),
-
   methods: {
-    submitHandler(){
+      registerAsUser() {
+        api.post('api/auth/registerAsUser', this.form).then(response => {
+        // After register, go to login
+        this.$router.push('/login')
+         
+      })
+    },
+    submitHandler() {
       if (this.$refs.form.validate()){
-        this.loading = true
-        setTimeout(() => {
-          this.loading = false
-          this.snackbar = true
-        }, 3000)}
+        
+        this.registerAsUser()
+        
+        }
       }
-       
   }
   
 }

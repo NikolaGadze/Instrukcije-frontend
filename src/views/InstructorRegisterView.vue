@@ -16,7 +16,7 @@
             <h2 class="primary--text"> Registrirajte se kao instruktor </h2>
           </div>
 
-          <v-form @submit.prevent="submit" ref="form" enctype="multipart/form-data" method="post">
+          <v-form @submit.prevent="submitHandler" ref="form" enctype="multipart/form-data" method="post">
 
 
               <div>
@@ -24,7 +24,8 @@
                   <div>
                     <v-text-field
                       v-model="form.first_name"
-                      :rules="validations.form.first_name"
+                      :rules="firstNameRules"
+                      required
                       type="name"
                       label="Ime"
                       placeholder="Ime"
@@ -35,7 +36,7 @@
                   <div>
                     <v-text-field
                     v-model="form.last_name"
-                    :rules="validations.form.last_name"
+                    :rules="lastNameRules"
                     type="name"
                     label="Prezime"
                     placeholder="Prezime"
@@ -46,7 +47,7 @@
                   <div>
                     <v-text-field
                     v-model="form.username"
-                    :rules="validations.form.username"
+                    :rules="usernameRules"
                     type="name"
                     label="Korisničko ime"
                     placeholder="Korisničko ime"
@@ -57,7 +58,7 @@
                   <div>
                     <v-text-field
                     v-model="form.email"
-                    :rules="validations.form.email"
+                    :rules="emailRules"
                     type="email"
                     label="Email"
                     placeholder="Email"
@@ -68,7 +69,7 @@
                   <div>
                     <v-text-field
                     v-model="form.password"
-                    :rules="validations.form.password"
+                    :rules="passwordRules"
                     :type="passwordShow? 'text' : 'password'"
                     label="Lozinka"
                     placeholder="Lozinka"
@@ -82,7 +83,7 @@
                   <div>
                     <v-text-field
                     v-model="form.password_confirmation"
-                    :rules="validations.form.password_confirmation"
+                    :rules="passwordConfirmationRules"
                     :type="password_Show? 'text' : 'password'"
                     label="Potvrda lozinke"
                     placeholder="Potvrda lozinke"
@@ -95,7 +96,7 @@
                   <div>
                     <v-text-field
                     v-model="form.phone"
-                    :rules="validations.form.phone"
+                    :rules="phoneRules"
                     type="phone"
                     label="Broj telefona"
                     placeholder="Broj telefona"
@@ -107,7 +108,7 @@
                   <div>
                     <v-autocomplete
                     v-model="form.country_name"
-                    :rules="validations.form.country_name"
+                    :rules="countryNameRules"
                     :items="countries"    
                     prepend-icon="mdi-flag"
                     label="Odaberite državu">
@@ -118,7 +119,7 @@
                   <div>
                     <v-autocomplete
                     v-model="form.city_name" 
-                    :rules="validations.form.city_name"
+                    :rules="cityNameRules"
                     :items="cities" 
                     prepend-icon="mdi-city"
                     label="Odaberite grad">
@@ -129,7 +130,7 @@
                   <div>
                     <v-autocomplete
                     v-model="form.subject_name"
-                    :rules="validations.form.subject_name"
+                    :rules="subjectNameRules"
                     :items="subjects"   
                     prepend-icon="mdi-school"
                     label="Odaberite predmet">
@@ -158,11 +159,7 @@
 </template>
 
 <script>
-
 import api from "@/plugins/api";
-import { required, email, minLength, sameAs } from 'vuelidate/lib/validators'
-
-
 export default {
   name: 'InstructorRegisterView',
   data: () => ({
@@ -178,37 +175,63 @@ export default {
       city_name: null,
       subject_name : null,
     },
-    isSubmitted: false,
-
-    validations: {
-    form: {
-      first_name: { required },
-      last_name: { required },
-      username: { required },
-      email: { required, email },
-      password: { required , minLength: minLength(6) },
-      password_confirmation: { required, sameAsPassword: sameAs('password') },
-      phone: { required },
-      country_name: { required },
-      city_name: { required },
-      subject_name: { required }
-    }
-  },
     
-
     countries: ['Hrvatska', 'Srbija', 'Bosna i Hercegovina'],
     cities: ['Zagreb', 'Split', 'Osijek', 'Rijeka', 'Beograd', 'Novi Sad', 'Niš','Kragujevac', 'Sarajevo', 'Mostar', 'Banja Luka', 'Tuzla'],
     subjects : ['Programiranje', 'Anatomija', 'Matematika'],
     
-
     passwordShow: false,
     
-
     password_Show: false,
+
+    firstNameRules: [
+      v => !!v || 'Ime je potrebno unijeti',
+      v => (v && v.length >= 2) || 'Ime mora imati 2 ili više slova!',
+    ],
+
+    lastNameRules: [
+      v => !!v || 'Prezime je potrebno unijeti',
+      v => (v && v.length >= 2) || 'Prezime mora imati 2 ili više slova!',
+    ],
+
+    usernameRules: [
+      v => !!v || 'Korisničko ime je potrebno unijeti',
+      v => (v && v.length >= 2) || 'Korisničko ime mora imati 2 ili više slova!',
+    ],
+
+    emailRules: [
+      v => !!v || 'Potrebno je unijeti email',
+      v => /.+@.+\..+/.test(v) || 'Neispravan format email adrese!',
+    ],
+
+    passwordRules: [
+      v => !!v || 'Lozinku je potrebno unijeti',
+      v => (v && v.length >= 6) || 'Lozinka mora imati 6 ili više znakova!',
+    ],
+
+    passwordConfirmationRules: [
+      v => !!v || 'Potvrdu lozinke je potrebno unijeti',
+    ],
+
+    phoneRules: [
+      v => !!v || 'Potrebno je unijeti broj telefona',
+      v => (v && v.length >= 9) || 'Broj telefona mora imati 9 ili više znakova!',
+    ],
+
+    countryNameRules: [
+      v => !!v || 'Potrebno je odabrati državu',
+    ],
+
+    cityNameRules: [
+      v => !!v || 'Potrebno je odabrati grad',
+    ],
+
+    subjectNameRules: [
+      v => !!v || 'Potrebno je odabrati predmet',
+    ],
+
    
-
   }),
-
   methods: {
       registerAsInstructor() {
         api.post('api/auth/registerAsInstructor', this.form).then(response => {
@@ -217,16 +240,14 @@ export default {
          
       })
     },
-
-    submit() {
-      alert('Radi!')
-
-      
-    }
+    submitHandler() {
+      if (this.$refs.form.validate()){
+  
+        this.registerAsInstructor()
+        
+        }
+      }
   }
-
-
   
 }
 </script>
-  

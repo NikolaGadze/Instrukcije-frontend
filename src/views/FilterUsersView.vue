@@ -157,7 +157,7 @@
             v-bind="attrs"
             @click="snackbar = false"
           >
-            Close
+            Zatvori
           </v-btn>
         </template>
       </v-snackbar>

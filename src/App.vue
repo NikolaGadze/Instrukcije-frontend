@@ -18,22 +18,20 @@
       
 
       
-      <div v-if="!user">
+      <!--<div v-if="!user">
         <button type="button" @click="leadToLogin()" class="btn btn-primary" style="margin-right: 10px; border-radius: 8px;" > Prijava </button> 
         <button type="button" @click="leadToSignin()" class="btn btn-primary" style="margin-right: 10px; border-radius: 8px;"> Registracija </button> 
-      </div>
+      </div>-->
 
-      <!--<v-icon v-if="!user" style="color:black" @click="logout()">
-        mdi-logout
-      </v-icon>-->
+      
 
-      <div v-if="user">
+      <!--<div v-if="user">
         <v-btn @click="logout()" color="red" style="color: white">
           Odjava <v-icon v-if="!user" style="color:white" @click="logout()">
         mdi-logout
       </v-icon>
         </v-btn>
-      </div>
+      </div>-->
       
     </v-app-bar>
     
@@ -49,7 +47,7 @@
     >
     <v-list>
         <v-list-item
-          v-for="link in links"
+          v-for="link in linksAdmins"
           :key="link"
           :to="link.ruta"
           link
@@ -62,7 +60,7 @@
 
         <v-spacer></v-spacer>
 
-        <v-list-item @click="logout()">
+        <v-list-item @click="logout()" v-if="user === null">
           <v-list-item-content>
             <v-list-item-title style="color: white; font-size: larger;"><v-icon style="margin-right: 10px;">mdi-logout</v-icon> Odjava</v-list-item-title>
           </v-list-item-content>
@@ -141,13 +139,36 @@
 </template>
 
 <script>
-  export default {
+import api from "@/plugins/api";
+
+export default {
     data: () => ({
       naslov: document.title = 'Instrukcije',
       drawer: null,
       user: null,
 
-      links: [
+      linksGuests: [
+        {ime: 'Početna', ruta: '/', ikona: 'mdi-home'},
+        {ime: 'O nama', ruta: '/about', ikona: 'mdi-help-box'},
+        {ime: 'Kontakt', ruta: '/contactUs', ikona: 'mdi-mail'},
+        {ime: 'Registracija', ruta: '/signup', ikona: 'mdi-account-tag'},
+        {ime: 'Prijava', ruta: '/login', ikona: 'mdi-login'},
+    ],
+
+    linksInstructorsUsers: [
+        {ime: 'Početna', ruta: '/', ikona: 'mdi-home'},
+        {ime: 'O nama', ruta: '/about', ikona: 'mdi-help-box'},
+        {ime: 'Kontakt', ruta: '/contactUs', ikona: 'mdi-mail'},
+        {ime: 'Registracija', ruta: '/signup', ikona: 'mdi-account-tag'},
+        {ime: 'Prijava', ruta: '/login', ikona: 'mdi-login'},
+        {ime: 'Pretražite instrukcije', ruta: '/searchInstructors', ikona: 'mdi-magnify'},
+        {ime: 'Filtriranje instrukcija', ruta: '/filterInstructors', ikona: 'mdi-account-filter'},
+        {ime: 'Pretražite studente', ruta: '/searchUsers', ikona: 'mdi-account-search'},
+        {ime: 'Filtriranje studenta', ruta: '/filterUsers', ikona: 'mdi-account-group'},
+        {ime: 'Profil', ruta: '/profile', ikona: 'mdi-account-circle'},
+    ],
+
+    linksAdmins: [
         {ime: 'Početna', ruta: '/', ikona: 'mdi-home'},
         {ime: 'O nama', ruta: '/about', ikona: 'mdi-help-box'},
         {ime: 'Kontakt', ruta: '/contactUs', ikona: 'mdi-mail'},
@@ -160,6 +181,8 @@
         {ime: 'Profil', ruta: '/profile', ikona: 'mdi-account-circle'},
         {ime: 'Upravljanje korisnicima', ruta: '/management', ikona: 'mdi-cog-outline'}
     ]
+
+
 
 
 
@@ -209,8 +232,9 @@
       
     },
     created() {
-      this.getUser()
-
+      
+      //this.getUser()
+    
   },
   }
 

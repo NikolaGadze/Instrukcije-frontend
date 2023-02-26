@@ -55,9 +55,30 @@
 
       </v-col>
     </v-main>
-    <v-snackbar color="green" v-model="snackbar">
-      Login success
-    </v-snackbar>
+
+
+    <div class="text-center ma-2">
+      
+      <v-snackbar
+        v-model="snackbar"
+        color="red"
+      >
+        {{ text }}
+
+        <template v-slot:action="{ attrs }">
+          <v-btn
+            color="white"
+            text
+            v-bind="attrs"
+            @click="snackbar = false"
+          >
+            Zatvori
+          </v-btn>
+        </template>
+      </v-snackbar>
+    </div>
+    
+    
 
   </fragment>  
 
@@ -73,6 +94,7 @@ import api from "@/plugins/api";
 
     loading: false,
     snackbar: false,
+    text: "Pogrešan email ili lozinka!",
 
     passwordShow: false,
     password: '',
@@ -101,15 +123,15 @@ import api from "@/plugins/api";
           // Go to home
           this.$router.push('/')
         }
-      })
+      }).catch(error => {
+      if (error.response && error.response.status === 422) {
+        this.snackbar = true
+      }
+    })
     },
     submitHandler(){
       if (this.$refs.form.validate()){
-        this.loading = true
-        setTimeout(() => {
-          this.loading = false
-          this.snackbar = true
-        }, 3000)
+        this.login()
 
       }
     },
