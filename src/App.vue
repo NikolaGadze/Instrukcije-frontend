@@ -148,7 +148,7 @@ export default {
     data: () => ({
       naslov: document.title = 'Instrukcije',
       drawer: null,
-      //user: null,
+      user: null,
 
       linksGuests: [
         {ime: 'Početna', ruta: '/', ikona: 'mdi-home'},
