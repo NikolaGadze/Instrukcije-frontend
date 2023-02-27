@@ -7,6 +7,7 @@ import VueAxios from 'vue-axios'
 import {BootstrapVue, IconsPlugin} from 'bootstrap-vue'
 import emailjs from 'emailjs-com'
 import Vuelidate from 'vuelidate'
+import store from './store'
 
 Vue.use(VueAxios, axios)
 Vue.use(Vuelidate)
@@ -23,5 +24,6 @@ Vue.config.productionTip = false
 new Vue({
   vuetify,
   router,
+  store,
   render: h => h(App)
 }).$mount('#app')

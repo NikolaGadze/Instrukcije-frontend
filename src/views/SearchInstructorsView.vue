@@ -215,6 +215,7 @@ import api from "@/plugins/api";
       if (error.response && error.response.status === 404) {
         this.message = this.message
         this.snackbar = true
+        this.instructors = []
       }
     })
       },

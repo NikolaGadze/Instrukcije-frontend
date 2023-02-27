@@ -45,7 +45,8 @@
       fixed
       temporary
     >
-    <v-list>
+    <div>
+      <v-list>
         <v-list-item
           v-for="link in linksAdmins"
           :key="link"
@@ -68,6 +69,7 @@
        
 
       </v-list>
+    </div>
     </v-navigation-drawer>
 
     
@@ -140,12 +142,13 @@
 
 <script>
 import api from "@/plugins/api";
+import { mapGetters } from 'vuex'
 
 export default {
     data: () => ({
       naslov: document.title = 'Instrukcije',
       drawer: null,
-      user: null,
+      //user: null,
 
       linksGuests: [
         {ime: 'Početna', ruta: '/', ikona: 'mdi-home'},
@@ -214,7 +217,7 @@ export default {
         window.open("https://www.youtube.com/", 'blank')
       },
 
-      getUser() {
+      /*getUser() {
     
     api.get('api/auth/user').then(response => {
       if(response.status == 200) {
@@ -222,7 +225,7 @@ export default {
       }
       
     })
-      },
+      },*/
 
       logout() {
       // Remove token on logout
@@ -236,6 +239,9 @@ export default {
       //this.getUser()
     
   },
+  
+
+  
   }
 
   
