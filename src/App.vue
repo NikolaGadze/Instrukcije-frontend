@@ -66,7 +66,33 @@
       </v-list>
     </div>
 
-    <div v-if="user">
+    <div v-if="user && (user.role[0].name === 'Korisnik' || user.role[0].name === 'Instruktor')">
+      <v-list>
+        <v-list-item
+          v-for="link in linksInstructorsUsers"
+          :key="link"
+          :to="link.ruta"
+          link
+          color="light-blue"       
+        >
+          <v-list-item-content>
+            <v-list-item-title style="color: white; font-size: larger;"><v-icon style="margin-right: 10px;">{{ link.ikona }}</v-icon> {{ link.ime }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-spacer></v-spacer>
+
+        <v-list-item @click="logout()">
+          <v-list-item-content>
+            <v-list-item-title style="color: white; font-size: larger;"><v-icon style="margin-right: 10px;">mdi-logout</v-icon> Odjava</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+       
+
+      </v-list>
+    </div>
+
+    <div v-if="user && (user.role[0].name === 'Administrator')">
       <v-list>
         <v-list-item
           v-for="link in linksAdmins"
@@ -251,9 +277,9 @@ export default {
   
     computed: {
     ...mapState(['user']),
-    userRoleName() {
+    /*userRoleName() {
       return this.user ? this.user.role.name : null
-    }
+    }*/
 
   },
   
