@@ -222,13 +222,14 @@
   
   <script>
    import api from "@/plugins/api";
+   import { mapState } from 'vuex'
+   
     export default {
     name: 'ProfileView',
     data: () => ({
 
     prefix_slike: "public/uploads/",  
     slika: require('../assets/nema_slike.png'),
-    user: null,
     profile: null,
     dialog: false,
     snackbar : false,
@@ -239,15 +240,6 @@
   
   
     methods: {
-        getUser() {
-    
-      api.get('api/auth/user').then(response => {
-        if(response.status == 200) {
-            this.user = response.data
-        }
-        
-      })
-        },
 
         showProfile() {
             api.get('api/auth/show-profile').then(response => {
@@ -279,9 +271,13 @@
     })
         },
     },
+    computed: {
+    ...mapState(['user']),
+
+    },
     created() {
         console.log
-        this.getUser()
+        this.$store.dispatch("getUser")
         this.showProfile()
 
     },

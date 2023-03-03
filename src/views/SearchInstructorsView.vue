@@ -146,6 +146,8 @@
 
 <script>
 import api from "@/plugins/api";
+import { mapState } from 'vuex'
+
   export default {
   name: 'SearchInstructorsView',
   data: () => ({
@@ -170,7 +172,6 @@ import api from "@/plugins/api";
     selected_instructor: {},
     show : false,
     totalPages : null,
-    user: null,
     snackbar: false,
     text: 'Instruktor nije pronađen.',
     message: null
@@ -179,17 +180,6 @@ import api from "@/plugins/api";
 
 
   methods: {
-    getUser() {
-    
-    api.get('api/auth/user').then(response => {
-      if(response.status == 200) {
-          this.user = response.data
-      }
-      
-    })
-      },
-
-      
       
       searchInstructors() {
           api.get('api/auth/search-instructors?search=' + this.search + '&page=' + this.current_page).then(response => {
@@ -228,8 +218,12 @@ import api from "@/plugins/api";
       
       
   },
+  computed: {
+    ...mapState(['user']),
+
+  },
   created() {
-      this.getUser()
+    this.$store.dispatch("getUser")
 
   },
     

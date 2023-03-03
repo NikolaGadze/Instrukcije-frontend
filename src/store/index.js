@@ -20,7 +20,7 @@ export default new Vuex.Store({
   },
   actions: {
     getUser(context) {
-      api.get('user').then(response => {
+      api.get('api/auth/user').then(response => {
         // Save user to store
         context.commit('saveUser', response.data)
       })

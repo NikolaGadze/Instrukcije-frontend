@@ -104,7 +104,7 @@ import api from "@/plugins/api";
     ],
     email: '',
     emailRules: [
-      v => !!v || 'Email adresu je pootrebno unijeti!',
+      v => !!v || 'Email adresu je potrebno unijeti!',
       v => /.+@.+\..+/.test(v) || 'Neispravan format email-a!',
     ],
   
@@ -120,6 +120,7 @@ import api from "@/plugins/api";
         if (response.status === 200) {
           // Add token to local storage
           localStorage.setItem("app_token", response.data)
+          this.$store.dispatch("getUser")
           // Go to home
           this.$router.push('/')
         }

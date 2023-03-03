@@ -170,6 +170,8 @@
 
 <script>
 import api from "@/plugins/api";
+import { mapState } from 'vuex'
+
   export default {
   name: 'FilterUsersView',
   data: () => ({
@@ -197,7 +199,6 @@ import api from "@/plugins/api";
     selected_user: {},
     show : false,
     totalPages : null,
-    user: null,
     snackbar: false,
     text: 'Instruktor nije pronađen.',
     message: null
@@ -206,17 +207,7 @@ import api from "@/plugins/api";
 
 
   methods: {
-    getUser() {
     
-    api.get('api/auth/user').then(response => {
-      if(response.status == 200) {
-          this.user = response.data
-      }
-      
-    })
-      },
-
-      
       
       filterUsers() {
           api.get('api/auth/filter-users' + '?' + '&country=' +this.country + '&city=' + this.city + '&description=' + this.subject +'&page=' + this.current_page).then(response => {
@@ -255,8 +246,13 @@ import api from "@/plugins/api";
       
       
   },
+  computed: {
+    ...mapState(['user']),
+
+  },
+  
   created() {
-      this.getUser()
+    this.$store.dispatch("getUser")
 
   },
     

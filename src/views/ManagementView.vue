@@ -41,6 +41,9 @@
                           <th class="text-left">
                             Uloga
                           </th>
+                          <th class="text-left">
+                            Ukloni
+                          </th>
                         </tr>
                       </thead>
                       <tbody>
@@ -54,6 +57,7 @@
                           <td>{{ userRole.email}}</td>
                           <td>{{ userRole.username }}</td>
                           <td>{{ userRole.role_name }}</td>
+                          <td><v-icon style="color: white" @click="showDetails(userRole)">mdi-delete</v-icon></td>
                         </tr>
                       </tbody>
                     </template>
@@ -73,48 +77,40 @@
                       </div>
                     </v-col>
 
+                    <v-dialog
+                      v-model="dialog2"
+                      width="550"
+                    >
+                      <v-card>
+                        <v-card-title class="text-h5 red darken-1 mb-5 white--text">
+                          Jeste li sigurni da želite obrisati korisnika?
+                        </v-card-title>
 
-                    <v-col cols="12" xl="12" lg="12" md="12" sm="12" xs="12">
-                      <div class="text-center">
-                        
-                        <v-btn
-                        color="red accent-4"
-                        dark
-                        @click.stop="dialog = true"
-                      >
-                        Obriši korisnika!
-                      </v-btn>
+                        <v-card-text style="color: black; font-size: larger;">
+                          <b>Ime i prezime:</b> {{ selected_user.first_name + ' ' +  selected_user.last_name}} 
+                        </v-card-text>
 
-                      <v-dialog
-                        v-model="dialog"
-                        max-width="400"
-                      >
-                        <v-card>
-                          <v-card-title class="text-h5" style="color: black; font-size: larger;">
-                            Želite obrisati korisnika?
-                          </v-card-title>
+                        <v-card-text style="color: black; font-size: larger;">
+                          <b>Email:</b> {{ selected_user.email}}   
+                        </v-card-text>
 
-                          <v-card-text style="color: black; font-size: large;">
-                            Ukolio želite obrisati određenog korisnika unesite njegov ID, i potvrdite brisanje.
-                          </v-card-text>
+                        <v-card-text style="color: black; font-size: larger;">
+                          <b>Korisničko ime:</b> {{ selected_user.username}}   
+                        </v-card-text>
 
-                          
-                          <v-card-text>
-                            <v-text-field
-                              label="Unesite ID korisnika"
-                              v-model="deleted_user_id">
-                            </v-text-field>
-                          </v-card-text>
-                           
-                          
+                        <v-card-text style="color: black; font-size: larger;">
+                          <b>Uloga:</b> {{ selected_user.role_name}}   
+                        </v-card-text>
 
-                          <v-card-actions>
+                        <v-divider></v-divider>
+
+                        <v-card-actions>
                             <v-spacer></v-spacer>
 
                             <v-btn
                               color="red lighten-1"
                               text
-                              @click="dialog = false"
+                              @click="dialog2 = false"
                             >
                               Natrag
                             </v-btn>
@@ -122,16 +118,13 @@
                             <v-btn
                               color="green darken-1"
                               text
-                              @click="deleteUser()"
+                              @click="deleteUser(selected_user.user_id)"
                             >
-                              Potvrdi
+                              Izbriši
                             </v-btn>
                           </v-card-actions>
-                        </v-card>
-                      </v-dialog>
-
-                      </div>
-                    </v-col>
+                      </v-card>
+                    </v-dialog>
 
 
 
@@ -194,11 +187,11 @@
   
   <script>
   import api from "@/plugins/api";
+  import { mapState } from 'vuex'
+  
   export default {
     data () {
       return {
-        user : null,
-        deleted_user_id : null,
         userRoles: [],
         current_page: null,
         first_page_url : null,
@@ -222,20 +215,14 @@
         text: 'Korisnik je uspjesno izbrisan.',
         snackbar2: false,
         text2: 'Greška!',
+        dialog2: false,
+        selected_user: {},
   
       }
     },
 
     methods : {
-      getUser() {
-    
-    api.get('api/auth/user').then(response => {
-      if(response.status == 200) {
-          this.user = response.data
-          console.log(this.user)
-        }
-    })
-      },
+      
 
       getUserRoles() {
           api.get('api/auth/all-user-roles?page=' + this.current_page).then(response => {
@@ -260,12 +247,11 @@
     })
       },
 
-      deleteUser() {
-        api.delete('api/auth/delete-users/' + this.deleted_user_id).then(response => {
+      deleteUser(user_id) {
+        api.delete('api/auth/delete-users/' + user_id).then(response => {
       if(response.status == 200) {
           this.snackbar = true
           this.getUserRoles()
-          this.deleted_user_id = null
       } 
       
     }).catch(error => {
@@ -275,11 +261,21 @@
     })
     },
 
+    showDetails(selected_user) {
+        this.selected_user = selected_user
+        this.dialog2 = true
+      }
+
     
     
   },
+  computed: {
+    ...mapState(['user']),
+
+     },
+  
   created() {
-      this.getUser()
+      this.$store.dispatch("getUser")
       this.getUserRoles()
 
   },

@@ -146,6 +146,8 @@
 
 <script>
 import api from "@/plugins/api";
+import { mapState } from 'vuex'
+
   export default {
   name: 'SearchInstructorsView',
   data: () => ({
@@ -169,7 +171,6 @@ import api from "@/plugins/api";
     selected_user: {},
     show : false,
     totalPages : null,
-    user: null,
     snackbar: false,
     text: 'Korisnik nije pronađen.',
     message: null
@@ -178,18 +179,7 @@ import api from "@/plugins/api";
 
 
   methods: {
-    getUser() {
     
-    api.get('api/auth/user').then(response => {
-      if(response.status == 200) {
-          this.user = response.data
-      }
-      
-    })
-      },
-
-      
-      
       searchUsers() {
           api.get('api/auth/search-users?search=' + this.search + '&page=' + this.current_page).then(response => {
       if(response.status == 200) {
@@ -227,8 +217,13 @@ import api from "@/plugins/api";
       
       
   },
+  computed: {
+    ...mapState(['user']),
+
+  },
+
   created() {
-      this.getUser()
+    this.$store.dispatch("getUser")
 
   },
     
